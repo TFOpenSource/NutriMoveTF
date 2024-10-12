@@ -32,6 +32,7 @@ export class ToolbarComponent implements OnInit {
   features = [
     { path: 'home', title: 'Home' },
     { path: 'home/analysis', title: 'Analysis' },
+    { path: 'profile/view', title: 'Profile' }
   ];
 
   access = [

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BaseService} from '../../../shared/services/base.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { BaseService } from '../../../shared/services/base.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../../shared/model/User/user.entity';
 
@@ -30,7 +30,7 @@ export class AuthenApiService {
   }
 
   register(user: User): Observable<User> {
-    return this.baseService.create('user', user); // Usa 'users' como el endpoint
+    return this.baseService.create('user', user);
   }
 
   getAllUsers(): Observable<User[]> {
@@ -39,5 +39,9 @@ export class AuthenApiService {
 
   getUserById(id: number): Observable<User> {
     return this.baseService.getById('user', id);
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.baseService.update('user', user.id, user);
   }
 }

@@ -1,0 +1,42 @@
+<div class="profile-container">
+  <h2>Detalles de Perfil:</h2>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSave()">
+    <label for="name">Nombre:</label>
+    <input id="name" formControlName="name" type="text" />
+
+    <label for="lastname">Apellido:</label>
+    <input id="lastname" formControlName="lastname" type="text" />
+
+    <label for="email">Correo:</label>
+    <input id="email" formControlName="email" type="email" />
+
+    <label for="privacy">Privacidad:</label>
+    <div>
+      <label for="public-privacy">
+        <input id="public-privacy" type="radio" formControlName="privacy" value="public" /> Público
+      </label>
+      <label for="private-privacy">
+        <input id="private-privacy" type="radio" formControlName="privacy" value="private" /> Privado
+      </label>
+    </div>
+
+    <label for="goal">Objetivo:</label>
+    <div>
+      <label>
+        <input type="radio" formControlName="goal" value="Bajar de peso" /> Bajar de peso
+      </label>
+      <label>
+        <input type="radio" formControlName="goal" value="Ganar Masa Muscular" /> Ganar Masa Muscular
+      </label>
+      <label>
+        <input type="radio" formControlName="goal" value="Solo estar en forma" /> Solo estar en forma
+      </label>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="profileForm.invalid">Guardar</button>
+      <button type="button" (click)="onCancel()">Descartar</button>
+    </div>
+  </form>
+</div>
