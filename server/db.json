@@ -1,0 +1,165 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "John",
+      "lastname": "Doe",
+      "email": "daaa@example.com",
+      "password": "wadafa",
+      "start_date": "2023-01-01",
+      "finish_date": "2023-12-31",
+      "created_at": "2023-01-01T00:00:00Z",
+      "plan_id": 1
+    },
+    {
+      "id": 2,
+      "name": "Allan",
+      "lastname": "Mori",
+      "email": "Mori777@example.com",
+      "password": "Opensourcehastalamuerte",
+      "start_date": "2023-01-01",
+      "finish_date": "2023-12-31",
+      "created_at": "2023-01-01T00:00:00Z",
+      "plan_id": 1
+    }
+  ],
+  "medical_history": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "date": "2023-06-01",
+      "condition": "Hypertension",
+      "description": "High blood pressure"
+    }
+  ],
+  "sleep": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "date": "2023-09-20",
+      "hours_slept": "7",
+      "quality": "Good"
+    }
+  ],
+  "hydration": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "date": "2023-09-20",
+      "quantity_ml": 2000
+    }
+  ],
+  "exercise_log": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "exercise_id": 1,
+      "date": "2023-09-20",
+      "duration": 60,
+      "calories_burned": "500"
+    }
+  ],
+  "achievements": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "achievement": "5km run",
+      "date": "2023-09-20"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "message": "You have a new achievement!"
+    }
+  ],
+  "subscription": [
+    {
+      "id": 1,
+      "description": "Premium Plan",
+      "price": 9.99,
+      "month_duration": 12,
+      "trial": false,
+      "user_id": 1
+    }
+  ],
+  "plans": [
+    {
+      "id": 1,
+      "plan_type_id": 1,
+      "name": "Weight Loss",
+      "description": "A plan focused on losing weight."
+    }
+  ],
+  "plan_type": [
+    {
+      "id": 1,
+      "name": "Nutrition"
+    }
+  ],
+  "plan_routine_exercise": [
+    {
+      "id": 1,
+      "sets": 3,
+      "reps": 12,
+      "plan_id": 1,
+      "routine": 1,
+      "exercise_id": 1
+    }
+  ],
+  "exercise": [
+    {
+      "id": 1,
+      "name": "Push-up",
+      "description": "A basic upper body exercise",
+      "duration": "15 minutes"
+    }
+  ],
+  "routine": [
+    {
+      "id": 1,
+      "nombre": "Morning Routine",
+      "description": "Basic morning workout routine",
+      "duracion": "30 minutes"
+    }
+  ],
+  "food_log": [
+    {
+      "id": 1,
+      "date": "2023-09-20",
+      "quantity": 1,
+      "user_id": 1,
+      "food_id": 1
+    }
+  ],
+  "food": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "calories": 95,
+      "proteins": 0,
+      "carbohydrates": 25,
+      "fats": 0
+    }
+  ],
+  "meal_plan_food": [
+    {
+      "id": 1,
+      "quantity": 1,
+      "food_id": 1,
+      "plan_id": 1
+    }
+  ],
+  "goal": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "goal_type": "Weight Loss",
+      "initial_value": 80,
+      "target_value": 70,
+      "start_date": "2023-01-01",
+      "end_date": "2023-12-31"
+    }
+  ]
+}

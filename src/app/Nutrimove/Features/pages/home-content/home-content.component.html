@@ -1,0 +1,36 @@
+<div class="content">
+  <div class="dashboard">
+    <h1>Bienvenido de nuevo!</h1>
+    <p *ngIf="currentUser">Usuario: {{ currentUser.name }} {{currentUser.lastname}}</p>
+
+    <div class="stats-container">
+      <div class="stat">
+        <p>Meta de hidratación diaria:</p>
+        <div class="circle">
+          <div class="percent blue">
+            <span>35%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat">
+        <p>Estadísticas de objetivos:</p>
+        <div class="circle">
+          <div class="percent green">
+            <span>60%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat">
+        <p>Calorías diarias:</p>
+        <div class="circle">
+          <div class="percent orange">
+            <span>700 kcal.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

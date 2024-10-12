@@ -1,0 +1,60 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.dashboard {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;  /* Esto asegura que sea un círculo */
+  background-color: #f3f3f3;
+  border: 10px solid #000;  /* Borde negro */
+  overflow: hidden;
+}
+
+.percent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.percent span {
+  z-index: 1;
+}
+
+.blue {
+  background: conic-gradient(blue 0% 35%, #f3f3f3 35% 100%);
+  border-radius: 50%;
+}
+
+.green {
+  background: conic-gradient(limegreen 0% 60%, #f3f3f3 60% 100%);
+  border-radius: 50%;
+}
+
+.orange {
+  background: conic-gradient(orange 0% 70%, #f3f3f3 70% 100%);
+  border-radius: 50%;
+}

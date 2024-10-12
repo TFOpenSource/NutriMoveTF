@@ -1,0 +1,36 @@
+<div class="health-stats-container">
+  <h2>Estadísticas de Salud</h2>
+
+  <div class="content">
+
+    <div class="bmi-section">
+      <h3>índice de masa corporal:</h3>
+      <p *ngIf="bmi !== null">{{ bmi.toFixed(1) }}</p>
+
+      <form [formGroup]="healthForm">
+        <label for="height">altura (cm):</label>
+        <input id="height" type="number" formControlName="height" placeholder="Altura en cm">
+
+        <label for="weight">peso (kg):</label>
+        <input id="weight" type="number" formControlName="weight" placeholder="Peso en kg">
+
+        <button type="button" (click)="calculateBMI()" [disabled]="healthForm.invalid">CALCULAR</button>
+      </form>
+    </div>
+
+    <div class="macros-section">
+      <h3>Macros nutricionales (gr.)</h3>
+
+      <form [formGroup]="healthForm">
+        <label for="proteins"><strong>Proteinas</strong></label>
+        <textarea id="proteins" formControlName="proteins" placeholder="Proteinas" readonly></textarea>
+
+        <label for="carbohydrates"><strong>Carbohidratos</strong></label>
+        <textarea id="carbohydrates" formControlName="carbohydrates" placeholder="Carbohidratos" readonly></textarea>
+
+        <label for="fats"><strong>Grasas</strong></label>
+        <textarea id="fats" formControlName="fats" placeholder="Grasas" readonly></textarea>
+      </form>
+    </div>
+  </div>
+</div>
