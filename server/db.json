@@ -144,8 +144,24 @@
       "name": "Apple",
       "calories": 95,
       "proteins": 0,
-      "carbohydrates": 25,
+      "carbs": 25,
       "fats": 0
+    },
+    {
+      "id": "2",
+      "name": "Banana",
+      "calories": 35,
+      "proteins": 21,
+      "carbs": 45,
+      "fats": 23
+    },
+    {
+      "id": "oKmgNvf",
+      "name": "Camote",
+      "calories": "137",
+      "proteins": "2.5",
+      "carbs": "31.9",
+      "fats": "0.3"
     }
   ],
   "meal_plan_food": [
