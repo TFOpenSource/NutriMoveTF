@@ -30,14 +30,14 @@ export class AuthenApiService {
   }
 
   register(user: User): Observable<User> {
-    return this.baseService.create('user', user); // Usa 'users' como el endpoint
+    return this.baseService.create('users', user); // Usa 'users' como el endpoint
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.baseService.getAll('user');
+    return this.baseService.getAll('users');
   }
 
   getUserById(id: number): Observable<User> {
-    return this.baseService.getById('user', id);
+    return this.baseService.getById('users', id);
   }
 }
