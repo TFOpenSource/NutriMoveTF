@@ -1,0 +1,21 @@
+<div class="profile-container">
+  <h2>Detalles de Perfil:</h2>
+
+  <div class="profile-info">
+    <p><strong>Nombre:</strong> {{ currentUser?.name }}</p>
+    <p><strong>Apellido:</strong> {{ currentUser?.lastname }}</p>
+    <p><strong>Email:</strong> {{ currentUser?.email }}</p>
+
+    <p><strong>Privacidad:</strong>
+      <span>{{ currentUser?.privacy }}</span>
+    </p>
+
+    <p><strong>Objetivo:</strong>
+      <span>{{ currentUser?.goal?.goal_type }}</span> <!-- objetivo -->
+    </p>
+  </div>
+
+  <div class="button-group">
+    <button (click)="onEdit()">Editar</button>
+  </div>
+</div>
