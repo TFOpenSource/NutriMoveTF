@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 })
 
 export class BaseService<T> {
+
   private apiUrl = 'http://localhost:3000';
 
   protected basePath: string = `${environment.serverBasePath}`;
@@ -17,11 +18,8 @@ export class BaseService<T> {
   protected resourcePath(): string {
     return `${this.basePath}${this.resourceEndPoint}`;
   }
-  constructor(private http: HttpClient) {}
 
-  getAll2(): Observable<T[]> {
-    return this.http.get<T[]>(this.resourcePath());
-  }
+  constructor(protected http: HttpClient) {}
 
   getAll(endpoint: string): Observable<T[]> {
     return this.http.get<T[]>(`${this.apiUrl}/${endpoint}`);
