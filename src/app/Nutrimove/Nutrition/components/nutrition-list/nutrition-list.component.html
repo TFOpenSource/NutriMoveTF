@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Nutrition</h1>
+    <h2>Routines of nutrition:</h2>
+    <div class="grid-container">
+        <mat-card *ngFor="let nutrition of nutritions" class="grid-item">
+            <mat-card-header>
+                <mat-card-title><p>Name: {{ nutrition.name }} <br></p>
+                    <p>Calories: {{ nutrition.calories }}<br></p>
+                    <p>Serving size g: {{ nutrition.serving_size_g }}<br></p>
+                    <p>Fat total g: {{ nutrition.fat_total_g }} <br></p>
+                    <p>Fat saturated g: {{ nutrition.fat_saturated_g }}</p>
+                    <p>Protein g: {{ nutrition.protein_g }}</p>
+                    <p>Sodium mg: {{ nutrition.sodium_mg }}</p>
+                    <p>potassium mg: {{ nutrition.potassium_mg }}</p>
+                    <p>Cholesterol mg: {{ nutrition.cholesterol_mg }}</p>
+                    <p>Carbohydrates total g: {{ nutrition.carbohydrates_total_g }}</p>
+                    <p>Fiber g: {{ nutrition.fiber_g }}</p>
+                    <p>Sugar g: {{ nutrition.sugar_g }}</p>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.grid-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+mat-card {
+  max-width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+mat-card-header, mat-card-content {
+  text-align: left;
+}
+
+mat-card-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
