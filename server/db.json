@@ -1,7 +1,7 @@
 {
   "user": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John",
       "lastname": "Doe",
       "email": "daaa@example.com",
@@ -10,13 +10,17 @@
       "finish_date": "2023-12-31",
       "created_at": "2023-01-01T00:00:00Z",
       "plan_id": 1,
-      "privacy": "Private",
+      "privacy": "private",
       "goal": {
-        "goal_type": "Bajar de peso"
+        "goal_type": {
+          "goal_type": {
+            "goal_type": "Bajar de peso"
+          }
+        }
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Allan",
       "lastname": "Mori",
       "email": "Mori777@example.com",
@@ -30,7 +34,7 @@
   ],
   "medical_history": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "date": "2023-06-01",
       "condition": "Hypertension",
@@ -39,7 +43,7 @@
   ],
   "sleep": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "date": "2023-09-20",
       "hours_slept": "7",
@@ -48,7 +52,7 @@
   ],
   "hydration": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "date": "2023-09-20",
       "quantity_ml": 2000
@@ -56,7 +60,7 @@
   ],
   "exercise_log": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "exercise_id": 1,
       "date": "2023-09-20",
@@ -66,7 +70,7 @@
   ],
   "achievements": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "achievement": "5km run",
       "date": "2023-09-20"
@@ -74,14 +78,14 @@
   ],
   "notifications": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "message": "You have a new achievement!"
     }
   ],
   "subscription": [
     {
-      "id": 1,
+      "id": "1",
       "description": "Premium Plan",
       "price": 9.99,
       "month_duration": 12,
@@ -91,7 +95,7 @@
   ],
   "plans": [
     {
-      "id": 1,
+      "id": "1",
       "plan_type_id": 1,
       "name": "Weight Loss",
       "description": "A plan focused on losing weight"
@@ -99,13 +103,13 @@
   ],
   "plan_type": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Nutrition"
     }
   ],
   "plan_routine_exercise": [
     {
-      "id": 1,
+      "id": "1",
       "sets": 3,
       "reps": 12,
       "plan_id": 1,
@@ -115,7 +119,7 @@
   ],
   "exercise": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Push-up",
       "description": "A basic upper body exercise",
       "duration": "15 minutes"
@@ -123,7 +127,7 @@
   ],
   "routine": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Morning Routine",
       "description": "Basic morning workout routine",
       "duracion": "30 minutes"
@@ -131,7 +135,7 @@
   ],
   "food_log": [
     {
-      "id": 1,
+      "id": "1",
       "date": "2023-09-20",
       "quantity": 1,
       "user_id": 1,
@@ -140,7 +144,7 @@
   ],
   "food": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Apple",
       "calories": 95,
       "proteins": 0,
@@ -166,7 +170,7 @@
   ],
   "meal_plan_food": [
     {
-      "id": 1,
+      "id": "1",
       "quantity": 1,
       "food_id": 1,
       "plan_id": 1
@@ -174,7 +178,7 @@
   ],
   "goal": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "goal_type": "Bajar de Peso",
       "initial_value": 80,
@@ -183,7 +187,7 @@
       "end_date": "2023-12-31"
     },
     {
-      "id": 2,
+      "id": "2",
       "user_id": 2,
       "goal_type": "Ganar Masa Muscular",
       "initial_value": 75,
