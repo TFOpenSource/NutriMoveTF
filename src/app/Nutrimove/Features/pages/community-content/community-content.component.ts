@@ -20,15 +20,15 @@ import { MatCardModule } from '@angular/material/card';
 export class CommunityContentComponent implements OnInit {
   photos: any[] = [];
   videos: any[] = [];
-  /* Si desean agregar mas experiencia aqui */
-  experiences: string[] =
+  
+  experiences: string[] = [
     'Empecé mi rutina hace 3 meses, ¡ya veo resultados! Más energía y mejor ánimo.',
     'Cada día más cerca de mi objetivo. La disciplina es clave.',
     'Tengo un físico de Yusepe porque como 8 eggs de la más alta calidad.',
     'El apoyo de la comunidad me ha mantenido motivado.',
     'He logrado mejorar mis tiempos en carrera gracias a las recomendaciones.',
-    'Logrando avanzar con mis metas cada vez mas.',
-    'Cambiando todo para que me pueda sentir mejor  .'
+    'Logrando avanzar con mis metas cada vez más.',
+    'Cambiando todo para que me pueda sentir mejor.'
   ];
 
   constructor(private pexelsService: PexelsService) {}
