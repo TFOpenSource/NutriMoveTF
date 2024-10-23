@@ -36,11 +36,11 @@ export class AuthenApiService {
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.baseService.getAll('users');
+    return this.baseService.getAll('user');
   }
 
   getUserById(id: number): Observable<User> {
-    return this.baseService.getById('users', id);
+    return this.baseService.getById('user', id);
   }
 
   updateUser(user: User): Observable<User> {
