@@ -20,8 +20,8 @@
 }
 
 .photo {
-  width: 80%; /* Ajusta el tamaño de la imagen */
-  max-height: 300px; /* Altura máxima para evitar que se desborde */
+  width: 80%; /* Imagen */
+  max-height: 300px; /* Desborde */
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -31,7 +31,7 @@
 }
 
 .experience-card {
-  margin-bottom: 20px; /* Espacio entre cada card */
+  margin-bottom: 20px; /* Espaciado */
   padding: 15px;
 }
 
@@ -49,7 +49,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; /* Espacio entre los videos */
+  gap: 20px;
+  /* Espacio entre videos */
 }
 
 .video {

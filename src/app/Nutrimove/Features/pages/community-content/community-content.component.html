@@ -14,11 +14,17 @@
   </div>
 </div>
 
+<!-- Sección de videos destacados -->
 <div class="videos-section">
   <h2>Videos destacados:</h2>
-  <div class="video-item" *ngFor="let video of videos">
-    <a [href]="video.url" target="_blank">
-      <img [src]="video.image" alt="{{ video.url }}" />
-    </a>
+  <div class="video-list">
+    <video
+      *ngFor="let video of videos"
+      [src]="video.video_files[0].link"
+    controls
+    class="video"
+    poster="{{ video.image }}"
+    preload="metadata">
+    </video>
   </div>
 </div>
