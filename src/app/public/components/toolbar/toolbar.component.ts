@@ -35,6 +35,7 @@ export class ToolbarComponent implements OnInit {
     { path: 'profile/view', title: 'Profile' },
     { path: 'home/mydiet', title: 'My Diet' },
     { path: 'home/rutines', title: 'Rutines' },
+    { path: 'home/community', title: 'Community' },
   ];
 
 access = [
