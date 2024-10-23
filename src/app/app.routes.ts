@@ -6,13 +6,13 @@ import { AccessPagePage } from './Nutrimove/Access/pages/access-page/access-page
 import { ProfileEditComponent } from './Nutrimove/Features/pages/profile-content/profile-edit/profile-edit.component';
 import { ProfileViewComponent } from './Nutrimove/Features/pages/profile-content/profile-view/profile-view.component';
 import { AuthGuard } from './shared/guards/auth.guard';
-import {MydietManagementComponent} from './Nutrimove/mydiet/pages/mydiet-page-management/mydiet-page-management.component';
+// import {MydietManagementComponent} from './Nutrimove/mydiet/pages/mydiet-page-management/mydiet-page-management.component';
 
 
 export const routes: Routes = [
   { path: 'home', component: HomeContentComponent, canActivate: [AuthGuard] },
   { path: 'home/analysis', component: AnalysisContentPage },
-  { path: 'home/mydiet', component: MydietManagementComponent},
+ // { path: 'home/mydiet', component: MydietManagementComponent},
   { path: 'access', component: AccessPagePage },
   { path: 'profile/view', component: ProfileViewComponent, canActivate: [AuthGuard] },
   { path: 'profile/edit', component: ProfileEditComponent, canActivate: [AuthGuard] },

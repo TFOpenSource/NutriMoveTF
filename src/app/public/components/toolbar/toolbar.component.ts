@@ -10,9 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {LoginDialogComponent} from '../../../Nutrimove/Access/components/login-dialog/login-dialog.component';
 import {RegisterDialogComponent} from '../../../Nutrimove/Access/components/register-dialog/register-dialog.component';
 import {User} from '../../../shared/model/User/user.entity';
-import {
-  MydietManagementComponent
-} from '../../../Nutrimove/mydiet/pages/mydiet-page-management/mydiet-page-management.component';
+// import { MydietManagementComponent } from '../../../Nutrimove/mydiet/pages/mydiet-page-management/mydiet-page-management.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -36,7 +34,7 @@ export class ToolbarComponent implements OnInit {
     { path: 'home', title: 'Home' },
     { path: 'home/analysis', title: 'Analysis' },
     { path: 'profile/view', title: 'Profile' }
-    { path: 'home/mydiet', title: 'My Diet' },
+    // { path: 'home/mydiet', title: 'My Diet' },
   ];
 
 access = [

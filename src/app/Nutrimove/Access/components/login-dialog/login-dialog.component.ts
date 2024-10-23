@@ -61,7 +61,7 @@ export class LoginDialogComponent {
             this.router.navigate(['/home']);
             this.dialogRef.close();
           }else{
-            this.errorMessage = 'wrong Email or password ';
+            this.errorMessage = 'Wrong Email or password ';
             console.error('Failed authentication');
           }
 
