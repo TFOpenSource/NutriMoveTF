@@ -31,12 +31,13 @@ export class ToolbarComponent implements OnInit {
 
   features = [
     { path: 'home', title: 'Home' },
-    { path: 'home/analysis', title: 'Analysis' },
-    { path: 'profile/view', title: 'Profile' },
     { path: 'home/mydiet', title: 'My Diet' },
-    { path: 'home/rutines', title: 'Rutines' },
+    { path: 'home/activities', title: 'Activities' },
+    { path: 'home/analysis', title: 'Analysis' },
     { path: 'home/community', title: 'Community' },
-    { path: 'home/activities', title: 'Activities' }
+    { path: 'home/rutines', title: 'Rutines' },
+    { path: 'profile/view', title: 'Profile' }
+
   ];
 
 access = [
