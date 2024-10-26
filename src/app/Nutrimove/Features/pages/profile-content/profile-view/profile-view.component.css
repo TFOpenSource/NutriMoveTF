@@ -2,31 +2,35 @@
   max-width: 600px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
-  padding: 20px;
 }
 
-h2 {
-  font-size: 24px;
+.form-group {
   margin-bottom: 20px;
 }
 
-.profile-info p {
-  font-size: 18px;
-  margin-bottom: 10px;
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.radio-options {
+  display: flex;
+  gap: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
 }
 
 .button-group {
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #f0f0f0;
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
