@@ -166,6 +166,14 @@
       "proteins": "2.5",
       "carbs": "31.9",
       "fats": "0.3"
+    },
+    {
+      "id": "zrSG1RQ",
+      "name": "apple",
+      "calories": "40",
+      "proteins": "40",
+      "carbs": "40",
+      "fats": "40"
     }
   ],
   "meal_plan_food": [
@@ -241,6 +249,5 @@
       "description": "Do a 20-minute guided relaxation session to reduce stress and improve mental well-being.",
       "duration": 20
     }
-
   ]
 }

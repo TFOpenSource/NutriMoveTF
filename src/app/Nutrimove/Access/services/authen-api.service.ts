@@ -31,7 +31,7 @@ export class AuthenApiService {
 
   register(user: User): Observable<User> {
 
-    return this.baseService.create('users', user); // Usa 'users' como el endpoint
+    return this.baseService.create('user', user); // Usa 'users' como el endpoint
 
   }
 
