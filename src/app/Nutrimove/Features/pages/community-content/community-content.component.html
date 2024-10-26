@@ -1,0 +1,29 @@
+<div class="community-container">
+  <div class="photos-section">
+    <h2>Fotos destacadas:</h2>
+    <img *ngFor="let photo of photos" [src]="photo.src.large" alt="Foto destacada" class="photo">
+  </div>
+
+  <div class="experiences-section">
+    <h2>Experiencias</h2>
+    <div class="experience-list">
+      <mat-card class="experience-card" *ngFor="let experience of experiences">
+        {{ experience }}
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="videos-section">
+  <h2>Videos destacados:</h2>
+  <div class="video-list">
+    <video
+      *ngFor="let video of videos"
+      [src]="video.video_files[0].link"
+    controls
+    class="video"
+    poster="{{ video.image }}"
+    preload="metadata">
+    </video>
+  </div>
+</div>

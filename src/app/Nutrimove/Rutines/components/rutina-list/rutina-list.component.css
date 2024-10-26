@@ -1,0 +1,33 @@
+.container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas fijas */
+  gap: 20px; /* Espacio entre las tarjetas */
+  padding: 20px;
+}
+
+.grid-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+mat-card {
+  max-width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Esto puede ser row si necesitas el contenido horizontal */
+  justify-content: flex-start;
+}
+
+mat-card-header, mat-card-content {
+  text-align: left;
+}
+
+mat-card-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}

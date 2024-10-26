@@ -1,0 +1,24 @@
+<h2>{{ editMode ? 'Edit My Diet' : 'My diet'}} </h2>
+<div class="form-section">
+  <form #mydietForm="ngForm" (submit)="onSubmit()" class="form-row">
+    <mat-form-field id="name-form-field">
+      <input [(ngModel)]="mydiet.name" matInput name="name" placeholder="Name" required>
+    </mat-form-field>
+    <mat-form-field id="calories-form-field">
+      <input [(ngModel)]="mydiet.calories" matInput name="calories" placeholder="Calories" required>
+    </mat-form-field>
+    <mat-form-field id="proteins-form-field">
+      <input [(ngModel)]="mydiet.proteins" matInput name="proteins" placeholder="Proteins" required>
+    </mat-form-field>
+    <mat-form-field id="carbohydrates-form-field">
+      <input [(ngModel)]="mydiet.carbs" matInput name="carbohydrates" placeholder="Carbohydrates" required>
+    </mat-form-field>
+    <mat-form-field id="fats-form-field">
+      <input [(ngModel)]="mydiet.fats" matInput name="fats" placeholder="Fats" required>
+    </mat-form-field>
+    <ng-container>
+      <button color="primary" mat-raised-button>{{ isEditMode() ? 'Update': 'Add'}}</button>
+      <button (click)="onCancel()" color="warn" mat-raised-button>Cancel</button>
+    </ng-container>
+  </form>
+</div>

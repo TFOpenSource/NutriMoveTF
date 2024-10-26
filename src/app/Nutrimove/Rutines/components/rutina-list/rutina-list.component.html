@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Rutinas</h1>
+    <h2>Rutina de Biceps:</h2>
+    <div class="grid-container">
+        <mat-card *ngFor="let rutina of rutinas" class="grid-item">
+            <mat-card-header>
+                <mat-card-title><p>Name: {{ rutina.name }} <br></p>
+                    <p>Type: {{ rutina.type }}<br></p>
+                    <p>Muscle: {{ rutina.muscle }}<br></p>
+                    <p>Equipment: {{ rutina.equipment }} <br></p>
+                    <p>Difficulty: {{ rutina.difficulty }}</p>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ rutina.instructions }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
