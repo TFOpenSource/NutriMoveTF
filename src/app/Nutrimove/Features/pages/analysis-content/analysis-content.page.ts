@@ -3,13 +3,15 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {NgIf} from '@angular/common';
 import {User} from '../../../../shared/model/User/user.entity';
 import {AuthenApiService} from '../../../Access/services/authen-api.service';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-analysis-content',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   templateUrl: './analysis-content.page.html',
   styleUrl: './analysis-content.page.css'

@@ -10,11 +10,12 @@ export class RutinaApiService {
   apiKey = 'ZUqYEhP6qjqc24vBj6Oa4Q==2HnQGaTSpbjXGVWA';
   baseUrl = 'https://api.api-ninjas.com/v1/exercises';
 
+
   constructor(private http: HttpClient) { }
 
-  getExercises(): Observable<any> {
+  getExercises(muscle: any): Observable<any> {
     const headers = new HttpHeaders().set('X-Api-Key', this.apiKey);
-    const url = `${this.baseUrl}?muscle=${this.muscle}`;
+    const url = `${this.baseUrl}?muscle=${muscle}`;
     return this.http.get(url, { headers });
   }
 }

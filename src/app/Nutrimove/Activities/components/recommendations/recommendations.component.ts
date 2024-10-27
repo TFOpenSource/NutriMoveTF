@@ -3,6 +3,7 @@ import {Recommendation} from '../../models/recommendations.entity';
 import {ActivitiesService} from '../../services/activities.service';
 import {NgForOf} from '@angular/common';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recommendations',
@@ -12,7 +13,8 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/mat
     MatCard,
     MatCardHeader,
     MatCardContent,
-    MatCardTitle
+    MatCardTitle,
+    TranslateModule
   ],
   templateUrl: './recommendations.component.html',
   styleUrl: './recommendations.component.css'

@@ -15,6 +15,7 @@ import {NgClass} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {MydietPageComponent} from "../../mydiet-page/mydiet-page.component";
 import {ToolbarComponent} from "../../../../public/components/toolbar/toolbar.component";
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mydiet-management',
@@ -36,7 +37,8 @@ import {ToolbarComponent} from "../../../../public/components/toolbar/toolbar.co
     MatIcon,
     MatPaginator,
     MydietPageComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    TranslateModule
   ],
   templateUrl: './mydiet-page-management.component.html',
   styleUrl: './mydiet-page-management.component.css'

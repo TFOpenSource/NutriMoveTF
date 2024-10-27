@@ -16,6 +16,7 @@ import {ActivitiesService} from '../../services/activities.service';
 import {ActivitiesFormComponent} from '../activities-form/activities-form.component';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {RecommendationsComponent} from '../recommendations/recommendations.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-activities-page',
@@ -41,7 +42,8 @@ import {RecommendationsComponent} from '../recommendations/recommendations.compo
     MatCardHeader,
     MatCardContent,
     MatCardTitle,
-    RecommendationsComponent
+    RecommendationsComponent,
+    TranslateModule
   ],
   templateUrl: './activities-page.component.html',
   styleUrl: './activities-page.component.css'

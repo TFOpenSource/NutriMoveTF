@@ -1,0 +1,77 @@
+{
+  "welcome": "¡Bienvenido de nuevo!",
+  "user": "Usuario:",
+  "out_of": "de",
+  "water_consumed": "ml de agua consumidos",
+  "calories_consumed": "calorías consumidas",
+  "sleep_hours": "horas de sueño",
+  "diet": {
+    "id": "ID",
+    "name": "Nombre",
+    "calories": "Calorías",
+    "proteins": "Proteínas",
+    "carbs": "Carbohidratos",
+    "fats": "Grasas",
+    "statistics_last_24_hours": "Estadísticas las últimas 24 horas"
+  },
+  "workouts": {
+    "title": "Rutinas",
+    "routine": "Rutina: ",
+    "name": "Nombre",
+    "type": "Tipo",
+    "muscle": "Músculo",
+    "equipment": "Equipo",
+    "difficulty": "Dificultad",
+    "search": "Buscar",
+    "search_placeholder": "Busca un tipo de musculo"
+  },
+  "community": {
+    "photos": "Fotos",
+    "exp": "Experiencias",
+    "videos": "Videos"
+  },
+  "activities": {
+    "title": "Actividades",
+    "id": "ID",
+    "name": "Nombre",
+    "description": "Descripción",
+    "duration": "Duración",
+    "recommendation": "Recomendaciones"
+  },
+  "health": {
+    "title": "Estadísticas de Salud",
+    "bmi": {
+      "title": "Índice de Masa Corporal",
+      "height": "Altura",
+      "weight": "Peso",
+      "height_placeholder": "Altura en cm",
+      "weight_placeholder": "Peso en kg",
+      "calculate": "CALCULAR"
+    },
+    "macros": {
+      "title": "Macros Nutricionales (gr.)",
+      "proteins": "Proteínas",
+      "proteins_placeholder": "Proteínas",
+      "carbohydrates": "Carbohidratos",
+      "carbohydrates_placeholder": "Carbohidratos",
+      "fats": "Grasas",
+      "fats_placeholder": "Grasas"
+    }
+  },
+  "profile": {
+    "title": "Detalles de Perfil",
+    "name": "Nombre",
+    "lastname": "Apellido",
+    "email": "Correo",
+    "privacy": "Privacidad",
+    "goal": "Objetivo",
+    "public": "Público",
+    "private": "Privado",
+    "lose_weight": "Bajar de peso",
+    "gain_muscle": "Ganar Masa Muscular",
+    "stay_fit": "Solo estar en forma",
+    "save": "Guardar",
+    "discard": "Descartar",
+    "edit": "Editar"
+  }
+}
