@@ -5,3 +5,7 @@
 img {
   width: 10%;
 }
+
+mat-toolbar {
+  background-color: #308C83;
+}
