@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-edit',
@@ -18,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule
   ],
   styleUrls: ['./profile-edit.component.css']
 })

@@ -11,27 +11,29 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @Component({
     selector: 'app-profile-view',
     templateUrl: './profile-view.component.html',
     standalone: true,
-    imports: [
-        MatCardTitle,
-        MatCard,
-        MatCardContent,
-        MatCardActions,
-        MatRadioGroup,
-        MatRadioButton,
-        MatButton,
-        MatFormField,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        MatButtonModule,
-        CommonModule
-    ],
+  imports: [
+    MatCardTitle,
+    MatCard,
+    MatCardContent,
+    MatCardActions,
+    MatRadioGroup,
+    MatRadioButton,
+    MatButton,
+    MatFormField,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatButtonModule,
+    CommonModule,
+    TranslateModule
+  ],
     styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit {

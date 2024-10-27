@@ -1,35 +1,34 @@
 <div class="health-stats-container">
-  <h2>Estadísticas de Salud</h2>
+  <h2>{{ 'health.title' | translate }}</h2>
 
   <div class="content">
-
     <div class="bmi-section">
-      <h3>índice de masa corporal:</h3>
+      <h3>{{ 'health.bmi.title' | translate }}:</h3>
       <p *ngIf="bmi !== null">{{ bmi.toFixed(1) }}</p>
 
       <form [formGroup]="healthForm">
-        <label for="height">altura (cm):</label>
-        <input id="height" type="number" formControlName="height" placeholder="Altura en cm">
+        <label for="height">{{ 'health.bmi.height' | translate }} (cm):</label>
+        <input id="height" type="number" formControlName="height" [placeholder]="'health.bmi.height_placeholder' | translate">
 
-        <label for="weight">peso (kg):</label>
-        <input id="weight" type="number" formControlName="weight" placeholder="Peso en kg">
+        <label for="weight">{{ 'health.bmi.weight' | translate }} (kg):</label>
+        <input id="weight" type="number" formControlName="weight" [placeholder]="'health.bmi.weight_placeholder' | translate">
 
-        <button type="button" (click)="calculateBMI()" [disabled]="healthForm.invalid">CALCULAR</button>
+        <button type="button" (click)="calculateBMI()" [disabled]="healthForm.invalid">{{ 'health.bmi.calculate' | translate }}</button>
       </form>
     </div>
 
     <div class="macros-section">
-      <h3>Macros nutricionales (gr.)</h3>
+      <h3>{{ 'health.macros.title' | translate }}:</h3>
 
       <form [formGroup]="healthForm">
-        <label for="proteins"><strong>Proteinas</strong></label>
-        <textarea id="proteins" formControlName="proteins" placeholder="Proteinas" readonly></textarea>
+        <label for="proteins"><strong>{{ 'health.macros.proteins' | translate }}</strong></label>
+        <textarea id="proteins" formControlName="proteins" [placeholder]="'health.macros.proteins_placeholder' | translate" readonly></textarea>
 
-        <label for="carbohydrates"><strong>Carbohidratos</strong></label>
-        <textarea id="carbohydrates" formControlName="carbohydrates" placeholder="Carbohidratos" readonly></textarea>
+        <label for="carbohydrates"><strong>{{ 'health.macros.carbohydrates' | translate }}</strong></label>
+        <textarea id="carbohydrates" formControlName="carbohydrates" [placeholder]="'health.macros.carbohydrates_placeholder' | translate" readonly></textarea>
 
-        <label for="fats"><strong>Grasas</strong></label>
-        <textarea id="fats" formControlName="fats" placeholder="Grasas" readonly></textarea>
+        <label for="fats"><strong>{{ 'health.macros.fats' | translate }}</strong></label>
+        <textarea id="fats" formControlName="fats" [placeholder]="'health.macros.fats_placeholder' | translate" readonly></textarea>
       </form>
     </div>
   </div>

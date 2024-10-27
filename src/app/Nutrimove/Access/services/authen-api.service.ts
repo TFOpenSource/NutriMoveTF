@@ -11,7 +11,12 @@ export class AuthenApiService {
 
   private currentUserSubject = new BehaviorSubject<User | null>(null);
 
-  constructor(private baseService: BaseService<User>) {}
+  constructor(private baseService: BaseService<User>) {
+    const storedUser = localStorage.getItem('authUser');
+    if (storedUser) {
+      this.currentUserSubject.next(JSON.parse(storedUser));
+    }
+  }
 
   login(email: string, password: string): Observable<User | null> {
     return this.getAllUsers().pipe(
@@ -19,6 +24,7 @@ export class AuthenApiService {
         const user = users.find(u => u.email === email && u.password === password);
         if (user){
           this.currentUserSubject.next(user);
+          localStorage.setItem('authUser', JSON.stringify(user));
         }
         return user ? user : null;
       })
