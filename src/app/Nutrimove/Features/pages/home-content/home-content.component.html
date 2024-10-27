@@ -1,36 +1,51 @@
 <div class="content">
   <div class="dashboard">
-    <h1>Bienvenido de nuevo!</h1>
-    <p *ngIf="currentUser">Usuario: {{ currentUser.name }} {{currentUser.lastname}}</p>
+    <h1>{{ 'welcome' | translate }}</h1>
+    <p *ngIf="currentUser">{{ 'user' | translate }} {{ currentUser.name }} {{ currentUser.lastname }}</p>
 
-    <div class="stats-container">
-      <div class="stat">
-        <p>Meta de hidratación diaria:</p>
-        <div class="circle">
-          <div class="percent blue">
-            <span>35%</span>
-          </div>
+    <div class="spinner-container">
+      <div class="spinner-item">
+        <mat-progress-spinner
+          mode="determinate"
+          [value]="progress_hyd"
+          [diameter]="100">
+        </mat-progress-spinner>
+        <div class="spinner-value">
+          {{ progress_hyd }}%
+        </div>
+        <div style="text-align: center; margin-top: 10px;" *ngIf="latestHydrationData">
+          {{ latestHydrationData.quantity_ml }} {{ 'out_of' | translate }} 2500 ml {{ 'water_consumed' | translate }}
         </div>
       </div>
 
-      <div class="stat">
-        <p>Estadísticas de objetivos:</p>
-        <div class="circle">
-          <div class="percent green">
-            <span>60%</span>
-          </div>
+      <!-- Gráfica de Calorías -->
+      <div class="spinner-item">
+        <mat-progress-spinner
+          mode="determinate"
+          [value]="progress_cal"
+          [diameter]="100">
+        </mat-progress-spinner>
+        <div class="spinner-value">
+          {{ progress_cal }}%
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          {{ 0 }} {{ 'out_of' | translate }} {{ 0 }} {{ 'calories_consumed' | translate }}
         </div>
       </div>
 
-      <div class="stat">
-        <p>Calorías diarias:</p>
-        <div class="circle">
-          <div class="percent orange">
-            <span>700 kcal.</span>
-          </div>
+      <div class="spinner-item">
+        <mat-progress-spinner
+          mode="determinate"
+          [value]="progress_sleep"
+          [diameter]="100">
+        </mat-progress-spinner>
+        <div class="spinner-value">
+          {{ progress_sleep }}%
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          {{ latestSleepData.hours_slept }} {{ 'out_of' | translate }} {{ this.GOAL_SLEEP }} {{ 'sleep_hours' | translate }}
         </div>
       </div>
     </div>
   </div>
-
 </div>
