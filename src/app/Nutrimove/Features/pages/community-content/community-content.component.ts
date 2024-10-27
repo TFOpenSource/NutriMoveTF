@@ -3,6 +3,7 @@ import { PexelsService } from './services/pexels.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import { MatCardModule } from '@angular/material/card';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-community-content',
@@ -14,13 +15,14 @@ import { MatCardModule } from '@angular/material/card';
     MatCardContent,
     MatCard,
     MatCardModule,
+    TranslateModule,
   ],
   styleUrls: ['./community-content.component.css']
 })
 export class CommunityContentComponent implements OnInit {
   photos: any[] = [];
   videos: any[] = [];
-  
+
   experiences: string[] = [
     'Empecé mi rutina hace 3 meses, ¡ya veo resultados! Más energía y mejor ánimo.',
     'Cada día más cerca de mi objetivo. La disciplina es clave.',

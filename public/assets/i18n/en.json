@@ -1,0 +1,77 @@
+{
+  "welcome": "Welcome back!",
+  "user": "User:",
+  "out_of": "out of",
+  "water_consumed": "ml of water consumed",
+  "calories_consumed": "calories consumed",
+  "sleep_hours": "hours of sleep",
+  "diet": {
+    "id": "ID",
+    "name": "Name",
+    "calories": "Calories",
+    "proteins": "Proteins",
+    "carbs": "Carbohydrates",
+    "fats": "Fats",
+    "statistics_last_24_hours": "Statistics for the last 24 hours"
+  },
+  "workouts": {
+    "title": "Workouts",
+    "routine": "Routine: ",
+    "name": "Name",
+    "type": "Type",
+    "muscle": "Muscle",
+    "equipment": "Equipment",
+    "difficulty": "Difficulty",
+    "search": "Search",
+    "search_placeholder": "Search a type of muscle"
+  },
+  "community": {
+    "photos": "Photos",
+    "exp": "Experiences",
+    "videos": "Videos"
+  },
+  "activities": {
+    "title": "Activities",
+    "id": "ID",
+    "name": "Name",
+    "description": "Description",
+    "duration": "Duration",
+    "recommendation": "Recommendations"
+  },
+  "health": {
+    "title": "Health Statistics",
+    "bmi": {
+      "title": "Body Mass Index",
+      "height": "Height",
+      "weight": "Weight",
+      "height_placeholder": "Height in cm",
+      "weight_placeholder": "Weight in kg",
+      "calculate": "CALCULATE"
+    },
+    "macros": {
+      "title": "Nutritional Macros (g)",
+      "proteins": "Proteins",
+      "proteins_placeholder": "Proteins",
+      "carbohydrates": "Carbohydrates",
+      "carbohydrates_placeholder": "Carbohydrates",
+      "fats": "Fats",
+      "fats_placeholder": "Fats"
+    }
+  },
+  "profile": {
+    "title": "Profile Details",
+    "name": "Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "privacy": "Privacy",
+    "goal": "Goal",
+    "public": "Public",
+    "private": "Private",
+    "lose_weight": "Lose Weight",
+    "gain_muscle": "Gain Muscle Mass",
+    "stay_fit": "Just Stay Fit",
+    "save": "Save",
+    "discard": "Discard",
+    "edit": "Edit"
+  }
+}

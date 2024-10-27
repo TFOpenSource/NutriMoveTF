@@ -13,27 +13,27 @@
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'diet.id' | translate }}</th>
           <td mat-cell *matCellDef="let mydiet">{{ mydiet.id }}</td>
         </ng-container>
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'diet.name' | translate }}</th>
           <td mat-cell *matCellDef="let mydiet">{{ mydiet.name }}</td>
         </ng-container>
         <ng-container matColumnDef="calories">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Calories</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'diet.calories' | translate }}</th>
           <td mat-cell *matCellDef="let mydiet">{{ mydiet.calories }}</td>
         </ng-container>
         <ng-container matColumnDef="proteins">
-          <th mat-header-cell *matHeaderCellDef> Proteins</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'diet.proteins' | translate }}</th>
           <td mat-cell *matCellDef="let mydiet">{{ mydiet.proteins }}</td>
         </ng-container>
         <ng-container matColumnDef="carbs">
-          <th mat-header-cell *matHeaderCellDef> Carbohydrates</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'diet.carbs' | translate }}</th>
           <td mat-cell *matCellDef="let mydiet">{{ mydiet.carbs }}</td>
         </ng-container>
         <ng-container matColumnDef="fats">
-          <th mat-header-cell *matHeaderCellDef> Fats</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'diet.fats' | translate }}</th>
           <td mat-cell *matCellDef="let mydiet">{{ mydiet.fats }}</td>
         </ng-container>
 
@@ -44,12 +44,12 @@
     </div>
 
     <div class="stats-container">
-      <h3 class="stats-title">Estadísticas las últimas 24 horas:</h3>
+      <h3 class="stats-title">{{ 'diet.statistics_last_24_hours' | translate }}:</h3>
       <div class="stats-content">
-        <p>Calorías: {{ dailyStats.calories }}</p>
-        <p>Proteínas: {{ dailyStats.proteins }}</p>
-        <p>Carbohidratos: {{ dailyStats.carbs }}</p>
-        <p>Grasas: {{ dailyStats.fats }}</p>
+        <p>{{ 'diet.calories' | translate }}: {{ dailyStats.calories }}</p>
+        <p>{{ 'diet.proteins' | translate }}: {{ dailyStats.proteins }}</p>
+        <p>{{ 'diet.carbs' | translate }}: {{ dailyStats.carbs }}</p>
+        <p>{{ 'diet.fats' | translate }}: {{ dailyStats.fats }}</p>
       </div>
     </div>
   </div>
