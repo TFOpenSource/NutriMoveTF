@@ -78,6 +78,7 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllMydiets();
     this.calculateDailyStats();
+
   }
 
   ngAfterViewInit(): void {
@@ -151,8 +152,15 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
   }
 
   private createMydiets() {
+
+    this.mydietData.calories = Number(this.mydietData.calories);
+    this.mydietData.proteins = Number(this.mydietData.proteins);
+    this.mydietData.carbs = Number(this.mydietData.carbs);
+    this.mydietData.fats = Number(this.mydietData.fats);
+
     this.foodService.create(this.foodService.endpoint, this.mydietData).subscribe((response: Food) => {
       this.dataSource.data.push(response);
+      console.log(response);
       this.dataSource.data = [...this.dataSource.data];
       this.calculateDailyStats();
     });
