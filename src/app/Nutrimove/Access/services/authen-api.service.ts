@@ -60,6 +60,10 @@ export class AuthenApiService {
     return this.baseService.create('subscription', data);  // Creamos solo la suscripción
   }
 
+  createGoal(data: any):Observable<any>{
+    return this.baseService.create("goal", data);
+  }
+
 
   getAllUsers(): Observable<User[]> {
     return this.baseService.getAll('user');
