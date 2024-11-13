@@ -2,22 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../../../../shared/model/User/user.entity';
+import {BaseService} from '../../../../../shared/services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileApiService {
-  private apiUrl = 'http://localhost:3000/users';  // Cambia la URL según la estructura de tu API
+  private endpoint: string = 'user';  // Cambia la URL según la estructura de tu API
 
-  constructor(private http: HttpClient) {}
+  constructor(private baseService: BaseService<any>) { }
 
-  // Obtener el perfil del usuario por ID
-  getUser(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${userId}`);
+  updateUser(userId: number, data: any): Observable<any> {
+    return this.baseService.update(this.endpoint, userId, data);
   }
 
-  // Actualizar el perfil del usuario
-  updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
-  }
 }
