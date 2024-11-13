@@ -3,7 +3,8 @@
 }
 
 img {
-  width: 10%;
+  display: block;
+  width: 30%;
 }
 
 mat-toolbar {
