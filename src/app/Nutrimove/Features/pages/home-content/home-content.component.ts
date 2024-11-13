@@ -7,7 +7,7 @@ import {DashboardService} from '../../services/dashboard.service';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCard, MatCardContent, MatCardHeader} from '@angular/material/card';
 import {MatProgressBar} from '@angular/material/progress-bar';
@@ -40,13 +40,11 @@ import {MatNativeDateModule} from '@angular/material/core';
 })
 export class HomeContentComponent implements OnInit {
 
-  progress_hyd = 0;
-  progress_cal = 10;
-  progress_sleep = 0;
+  public hydrationForm: FormGroup;
+  public sleepForm: FormGroup;
 
-  updatingHours = 0;
-  updatingHdr = 0;
-  qualitySleep: string = "";
+  progress_hyd = 0;
+  progress_sleep = 0;
 
   GOAL_HYDRATION: number = 2500;
   GOAL_SLEEP: number = 8;
@@ -59,31 +57,46 @@ export class HomeContentComponent implements OnInit {
   goal: any = null;
   selectedGoal: any = null;
 
-  constructor(private authenService: AuthenApiService, private dashboardService: DashboardService, private dialog: MatDialog) {
+  constructor(private authenService: AuthenApiService, private dashboardService: DashboardService, private dialog: MatDialog, public fb:FormBuilder) {
+    this.hydrationForm = this.fb.group({
+      ml: [null, [Validators.required, Validators.min(0)]]
+    });
+
+    this.sleepForm = this.fb.group({
+      hours: [null, [Validators.required, Validators.min(0)]],
+      quality: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
+
     this.authenService.getCurrentUser().subscribe(
       (user) => {
         this.currentUser = user;
         this.user_id = user?.id;
-        console.log('Usuario autenticado en Home:', this.currentUser?.name);
-        this.getLatestHydrationForLast24Hours();
-        this.getLatestSleepForLast24Hours()
+        console.log('Usuario autenticado en Home:', this.currentUser);
+        this.refreshData();
       },
       error => {
         console.error('Error fetching current user:', error);
       }
     );
 
+    console.log(this.user_id);
     this.dashboardService.getGoal(this.user_id).subscribe(goalData => {
       this.goal = goalData;
+        console.log(this.goal);
     }, error => {
       console.error('error loading goal:', error);
-      this.goal = null;
+
       }
     );
 
+  }
+
+  refreshData():void {
+    this.getLatestHydrationForLast24Hours();
+    this.getLatestSleepForLast24Hours()
   }
 
   openEditGoalModal(): void {
@@ -184,34 +197,33 @@ export class HomeContentComponent implements OnInit {
 
   }
 
-  protected openModal() {
-
-    this.dashboardService.updateHydration(this.user_id, this.updatingHdr).subscribe(
-      response => {
-        this.updatingHdr = 0;
-        console.log('Registro guardado exitosamente:', response);
-      },
-      error => {
-        this.updatingHdr = 0;
-        console.error('Error al guardar el registro:', error);
-      }
-    );
-
-    this.dashboardService.updateHours(this.user_id, parseInt(String(this.updatingHours)), this.qualitySleep).subscribe(
-      response => {
-        this.updatingHours = 0;
-        this.qualitySleep = '';
-        console.log('Registro guardado exitosamente:', response);
-      },
-      error => {
-        this.updatingHours = 0;  // o 0 si prefieres un número
-        this.qualitySleep = '';
-        console.error('Error al guardar el registro:', error);
-      }
-    );
-
-
+  openModalSleep():void {
+    console.log('openModalSleep');
+    if (this.sleepForm.valid) {
+      const { hours, quality } = this.sleepForm.value;
+      this.dashboardService.updateHours(this.user_id, hours, quality).subscribe(
+        response => {
+          this.getLatestSleepForLast24Hours();
+          console.log('Sleep record saved successfully:', response);
+          this.sleepForm.reset();
+        },
+        error => console.error('Error saving sleep record:', error)
+      );
+    }
   }
 
+  openModal(): void {
+    if (this.hydrationForm.valid) {
+      const mlConsumed = this.hydrationForm.value.ml;
+      this.dashboardService.updateHydration(this.user_id, mlConsumed).subscribe(
+        response => {
+          console.log('Hydration record saved successfully:', response);
+          this.getLatestHydrationForLast24Hours();
+          this.hydrationForm.reset();
+        },
+        error => console.error('Error saving hydration record:', error)
+      );
+    }
 
+  }
 }

@@ -62,6 +62,7 @@ export class RegisterDialogComponent implements OnInit{
       }
 
       const newUser = {
+        id:0,
         name,
         lastname,
         email,
@@ -73,6 +74,15 @@ export class RegisterDialogComponent implements OnInit{
       this.authenService.register(newUser as User).subscribe(
         (userResponse) => {
           console.log('User Created:', userResponse);
+
+
+          const createData = {
+            id:0,
+            user_id: userResponse.id,
+            goal_type: "-",
+            start_date: "-",
+            end_date: "-"
+          }
 
           this.data = {
             id:0,
@@ -95,6 +105,15 @@ export class RegisterDialogComponent implements OnInit{
             (error) => {
               console.error('Error al crear la suscripción', error);
               this.errorMessage = 'Error al crear la suscripción';
+            }
+          );
+
+          this.authenService.createGoal(createData).subscribe(
+            (response) => {
+              console.log('Goal Created:', response);
+            },
+            error => {
+              console.error('Error creating Goal:', error);
             }
           );
         },

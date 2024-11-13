@@ -123,4 +123,25 @@ export class DashboardService {
     return this.baseService.create("hydration", response );
 
   }
+
+  getMedicalHistory(userId: number | undefined): Observable<any[]> {
+    return this.baseService.getAll('medical_history').pipe(
+      map((history: any[]) => {
+        return history.filter(record => record.user_id === userId);
+      })
+    );
+  }
+
+  updateMedicalHistory(record: any): Observable<any> {
+    return this.baseService.update('medical_history', record.id, record);
+  }
+
+  deleteMedicalHistory(recordId: number): Observable<any> {
+    return this.baseService.delete('medical_history', recordId);
+  }
+
+  addMedicalHistory(record: any): Observable<any> {
+    return this.baseService.create('medical_history', record);
+  }
+
 }

@@ -5,6 +5,28 @@
   "water_consumed": "ml of water consumed",
   "calories_consumed": "calories consumed",
   "sleep_hours": "hours of sleep",
+  "sleep": {
+    "last_24h": "Sleep Hours in the last 24h",
+    "input_hours": "Hours",
+    "quality": "Quality",
+    "quality_plc": "Ej: Good, Regular, Bad",
+    "sleep_error": "This field is required",
+    "update": "Update Sleep Hours"
+  },
+  "hydration": {
+    "last_24h": "Hydration in the last 24h",
+    "ml_consumed": "ml consumed",
+    "ml_placeholder": "Enter ml consumed",
+    "ml_error": "This field is required and must be a positive number",
+    "update": "Update Hydration"
+  },
+  "goal": {
+    "info_title": "Goal Information",
+    "type": "Type",
+    "start_date": "Start Date",
+    "end_date": "End Date",
+    "none": "None"
+  },
   "diet": {
     "id": "ID",
     "name": "Name",
@@ -56,7 +78,22 @@
       "carbohydrates_placeholder": "Carbohydrates",
       "fats": "Fats",
       "fats_placeholder": "Fats"
+    },
+    "medical_history": {
+      "title": "Medical History",
+      "date": "Date",
+      "condition": "Condition",
+      "description": "Description",
+      "no_records": "No medical history records found.",
+      "edit_title": "Edit Medical Record",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add": "Add",
+      "add_new": "Add New Medical Record",
+      "save": "Save",
+      "cancel": "Cancel"
     }
+
   },
   "profile": {
     "title": "Profile Details",
