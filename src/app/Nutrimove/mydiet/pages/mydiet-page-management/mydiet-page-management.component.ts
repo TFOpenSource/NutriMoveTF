@@ -16,6 +16,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MydietPageComponent} from "../../mydiet-page/mydiet-page.component";
 import {ToolbarComponent} from "../../../../public/components/toolbar/toolbar.component";
 import {TranslateModule} from '@ngx-translate/core';
+import {AuthenApiService} from '../../../Access/services/authen-api.service';
 
 @Component({
   selector: 'app-mydiet-management',
@@ -67,17 +68,21 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) protected paginator!: MatPaginator;
   @ViewChild(MatSort) protected sort!: MatSort;
 
+  currentUser: any = null;
   private foodService: FoodService = inject(FoodService);
 
-  constructor() {
+  constructor(private authenService: AuthenApiService) {
     this.editMode = false;
     this.mydietData = new Food({});
     this.dataSource = new MatTableDataSource<Food>();
+
+    this.authenService.getCurrentUser().subscribe((user) => {
+      this.currentUser = user;
+    });
   }
 
   ngOnInit(): void {
-    this.getAllMydiets();
-    this.calculateDailyStats();
+    this.getAllMydiets(this.currentUser.id);
 
   }
 
@@ -111,7 +116,7 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
 
   protected onCancelRequested() {
     this.resetEditState();
-    this.getAllMydiets();
+    this.getAllMydiets(this.currentUser.id);
   }
 
   private resetEditState(): void {
@@ -136,11 +141,11 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
     this.resetEditState();
   }
 
-  private getAllMydiets() {
+  private getAllMydiets(userId: number) {
     this.foodService.getAll(this.foodService.endpoint).subscribe((response: Array<Food>) => {
-      this.dataSource.data = response;
+      this.dataSource.data = response.filter(food => food.user_id === userId);
       this.calculateDailyStats();
-      console.log(response);
+
     });
   }
 
@@ -160,7 +165,6 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
 
     this.foodService.create(this.foodService.endpoint, this.mydietData).subscribe((response: Food) => {
       this.dataSource.data.push(response);
-      console.log(response);
       this.dataSource.data = [...this.dataSource.data];
       this.calculateDailyStats();
     });

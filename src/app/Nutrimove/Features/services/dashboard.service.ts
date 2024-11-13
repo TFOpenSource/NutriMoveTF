@@ -21,9 +21,22 @@ export class DashboardService {
   getAllSleep(userId: number | undefined): Observable<any[]> {
     return this.baseService.getAll('sleep').pipe(
       map(sleep => {
-        return sleep.filter(sleep => sleep.user_id === userId);
+        const a = sleep.filter(sleep => sleep.user_id === userId);
+        return a;
       })
     );
+  }
+
+  getGoal(userId: number | undefined):Observable<any> {
+    return this.baseService.getAll('goal').pipe(
+      map(goal => {
+        return goal.find(goal => goal.user_id === userId);
+      })
+    )
+  }
+
+  updateGoal(id: number, goalData: any) {
+    return this.baseService.update('goal', id, goalData);
   }
 
   getLatestSleepLast24Hours(userId: number | undefined): Observable<any> {
@@ -44,9 +57,13 @@ export class DashboardService {
           return null;
         }
 
-        return recentSleep.reduce((latest: { date: string | number | Date; }, current: { date: string | number | Date; }) =>
-          new Date(current.date) > new Date(latest.date) ? current : latest
-        );
+
+        const totalHoursSlept = recentSleep.reduce((total, current) => {
+          return total + (current.hours_slept || 0);
+        }, 0);
+
+        return totalHoursSlept;
+
       })
     );
   }
@@ -68,11 +85,42 @@ export class DashboardService {
         if (recentHydrations.length === 0) {
           return null;
         }
+        const totalmlDrink = recentHydrations.reduce((total, current) => {
+          return total + (current.quantity_ml || 0);
+        }, 0);
 
-        return recentHydrations.reduce((latest: { date: string | number | Date; }, current: { date: string | number | Date; }) =>
-          new Date(current.date) > new Date(latest.date) ? current : latest
-        );
+        console.log("ml" + totalmlDrink);
+
+        return totalmlDrink;
       })
     );
+  }
+
+  updateHours(userId: number | undefined, hours: number, quality: string): Observable<any> {
+
+    const response = {
+      id: 0,
+      user_id: userId,
+      date: new Date().toISOString(),
+      hours_slept: hours,
+      quality: quality
+    }
+
+
+    return this.baseService.create("sleep", response );
+
+  }
+  updateHydration(userId: number | undefined, quantity: number): Observable<any> {
+
+    const response = {
+      id: 0,
+      user_id: userId,
+      date: new Date().toISOString(),
+      quantity_ml: quantity
+    }
+
+
+    return this.baseService.create("hydration", response );
+
   }
 }

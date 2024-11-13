@@ -43,7 +43,7 @@ export class CommunityContentComponent implements OnInit {
   loadPhotos(): void {
     this.pexelsService.searchPhotos('fitness', 5).subscribe(
       (response: any) => {
-        console.log('Fotos cargadas:', response.photos);
+
         this.photos = response.photos;
       },
       error => {
@@ -55,7 +55,6 @@ export class CommunityContentComponent implements OnInit {
   loadVideos(): void {
     this.pexelsService.searchVideos('fitness', 5).subscribe(
       (response: any) => {
-        console.log('Videos cargados:', response.videos);
         this.videos = response.videos;
       },
       error => {
