@@ -9,6 +9,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {RouterOutlet} from '@angular/router';
 import {Activities} from '../../models/activities.entity';
+import {AuthenApiService} from '../../../Access/services/authen-api.service';
 
 @Component({
   selector: 'app-activities-form',
@@ -40,13 +41,22 @@ export class ActivitiesFormComponent {
   @Output() protected activityUpdateRequested = new EventEmitter<Activities>();
   @Output() protected cancelRequested = new EventEmitter<void>();
   @ViewChild('activityForm', { static: false }) protected activityForm!: NgForm;
+  currentUser: any = null;
 
-  constructor() {
+
+  constructor(private authenService: AuthenApiService) {
+    this.authenService.getCurrentUser().subscribe((user) => {
+      this.currentUser = user;
+
+    });
+
     this.activity = new Activities({});
+    this.activity.user_id = this.currentUser.id;
+
   }
 
   private resetEditState() {
-    this.activity = new Activities({}); // Reseteamos la entidad Activity
+    this.activity = new Activities({});
     this.editMode = false;
     this.activityForm.reset();
   }
@@ -62,8 +72,16 @@ export class ActivitiesFormComponent {
 
   protected onSubmit() {
     if (this.isValid()) {
+
+      if (this.currentUser) {
+        this.activity.user_id = this.currentUser.id;
+      } else {
+        console.error('Usuario no disponible al momento de enviar la actividad');
+        return;
+      }
+
       const emitter = this.isEditMode() ? this.activityUpdateRequested : this.activityAddRequested;
-      emitter.emit(this.activity); // Emitimos la actividad
+      emitter.emit(this.activity);
       this.resetEditState();
     } else {
       console.error('Invalid form data');
