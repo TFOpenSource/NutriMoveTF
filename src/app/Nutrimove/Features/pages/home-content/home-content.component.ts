@@ -69,11 +69,12 @@ export class HomeContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.authenService.getCurrentUser().subscribe(
       (user) => {
         this.currentUser = user;
         this.user_id = user?.id;
-        console.log('Usuario autenticado en Home:', this.currentUser?.name);
+        console.log('Usuario autenticado en Home:', this.currentUser);
         this.refreshData();
       },
       error => {
@@ -81,11 +82,13 @@ export class HomeContentComponent implements OnInit {
       }
     );
 
+    console.log(this.user_id);
     this.dashboardService.getGoal(this.user_id).subscribe(goalData => {
       this.goal = goalData;
+        console.log(this.goal);
     }, error => {
       console.error('error loading goal:', error);
-      this.goal = null;
+
       }
     );
 
