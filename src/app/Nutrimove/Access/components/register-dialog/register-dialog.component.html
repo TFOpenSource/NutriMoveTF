@@ -38,6 +38,14 @@
       </mat-error>
     </mat-form-field>
 
+    <div class="form-group radio-group">
+      <mat-label>Plan: </mat-label>
+      <mat-radio-group formControlName="plan" class="radio-options">
+        <mat-radio-button value="Basic Plan">Basic Plan</mat-radio-button>
+        <mat-radio-button value="Premium Plan"> Premium Plan</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>

@@ -1,10 +1,11 @@
 <div class="content">
   <div class="dashboard">
-    <h1>{{ 'welcome' | translate }}</h1>
+    <h1 class="welcome">{{ 'welcome' | translate }}</h1>
     <p *ngIf="currentUser">{{ 'user' | translate }} {{ currentUser.name }} {{ currentUser.lastname }}</p>
 
     <div class="spinner-container">
       <div class="spinner-item">
+        <p>Hidratación las últimas 24h</p>
         <mat-progress-spinner
           mode="determinate"
           [value]="progress_hyd"
@@ -14,26 +15,41 @@
           {{ progress_hyd }}%
         </div>
         <div style="text-align: center; margin-top: 10px;" *ngIf="latestHydrationData">
-          {{ latestHydrationData.quantity_ml }} {{ 'out_of' | translate }} 2500 ml {{ 'water_consumed' | translate }}
+          {{ latestHydrationData }} {{ 'out_of' | translate }} 2500 {{ 'water_consumed' | translate }}
+        </div>
+
+        <div class="input-container">
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>ml consumidos</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="updatingHdr"
+              name="ml"
+              placeholder="ml consumidos"
+              required
+              #ml="ngModel"
+              min="0"
+            />
+            <mat-error *ngIf="ml.invalid && ml.touched">
+              Este campo es obligatorio y debe ser un número positivo
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="openModal()"
+            [disabled]="ml.invalid"
+          >
+            Actualizar Hidratacion
+          </button>
         </div>
       </div>
 
-      <!-- Gráfica de Calorías -->
-      <div class="spinner-item">
-        <mat-progress-spinner
-          mode="determinate"
-          [value]="progress_cal"
-          [diameter]="100">
-        </mat-progress-spinner>
-        <div class="spinner-value">
-          {{ progress_cal }}%
-        </div>
-        <div style="text-align: center; margin-top: 10px;">
-          {{ 0 }} {{ 'out_of' | translate }} {{ 0 }} {{ 'calories_consumed' | translate }}
-        </div>
-      </div>
 
       <div class="spinner-item">
+        <p>Horas de Sueño las últimas 24h</p>
         <mat-progress-spinner
           mode="determinate"
           [value]="progress_sleep"
@@ -43,8 +59,60 @@
           {{ progress_sleep }}%
         </div>
         <div style="text-align: center; margin-top: 10px;">
-          {{ latestSleepData?.hours_slept }} {{ 'out_of' | translate }} {{ this.GOAL_SLEEP }} {{ 'sleep_hours' | translate }}
+          {{ latestSleepData || 0 }} {{ 'out_of' | translate }} {{ this.GOAL_SLEEP }} {{ 'sleep_hours' | translate }}
         </div>
+
+        <div class="input-container">
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Horas Dormidas</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="updatingHours"
+              name="hours"
+              placeholder="Horas Dormidas"
+              required
+              #hours="ngModel"
+              min="0"
+            />
+            <mat-error *ngIf="hours.invalid && hours.touched">
+              Este campo es obligatorio y debe ser un número positivo
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Calidad</mat-label>
+            <input
+              matInput
+              [(ngModel)]="qualitySleep"
+              name="quality"
+              placeholder="Ej. Buena, Regular, Mala"
+              required
+              #quality="ngModel"
+            />
+            <mat-error *ngIf="quality.invalid && quality.touched">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="openModal()"
+            [disabled]="hours.invalid || quality.invalid"
+          >
+            Actualizar Horas de Sueño
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <div class="goal-container">
+      <div class="goal-item" (click)="openEditGoalModal()">
+        <strong>Información de la meta:</strong>
+        <p>Tipo: {{ goal?.goal_type || "None"}}</p>
+        <p>Inicio de la meta: {{ goal?.start_date || "None" }}</p>
+        <p>Fin de la meta: {{ goal?.end_date || "None"}}</p>
       </div>
     </div>
   </div>

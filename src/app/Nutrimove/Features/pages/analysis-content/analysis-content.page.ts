@@ -4,6 +4,7 @@ import {NgIf} from '@angular/common';
 import {User} from '../../../../shared/model/User/user.entity';
 import {AuthenApiService} from '../../../Access/services/authen-api.service';
 import {TranslateModule} from '@ngx-translate/core';
+import {FoodService} from '../../../mydiet/services/food.service';
 
 @Component({
   selector: 'app-analysis-content',
@@ -19,19 +20,22 @@ import {TranslateModule} from '@ngx-translate/core';
 export class AnalysisContentPage implements OnInit {
 
   currentUser: User | null = null;
+
   ngOnInit(): void {
     this.authenService.getCurrentUser().subscribe(
       (user) => {
         this.currentUser = user;
-        console.log('Usuario autenticado en Home:', this.currentUser);
       }
     );
+
+    this.generateMacros();
   }
 
   healthForm: FormGroup;
   bmi: number | null = null;
+  macroData: any = null;
 
-  constructor(private fb: FormBuilder, private authenService: AuthenApiService) {
+  constructor(private foodservice: FoodService, private fb: FormBuilder, private authenService: AuthenApiService) {
 
     this.healthForm = this.fb.group({
       height: ['', [Validators.required, Validators.min(1)]],
@@ -40,6 +44,7 @@ export class AnalysisContentPage implements OnInit {
       carbohydrates: ['', [Validators.min(0)]],
       fats: ['', [Validators.min(0)]]
     });
+
   }
 
   calculateBMI() {
@@ -50,4 +55,18 @@ export class AnalysisContentPage implements OnInit {
       this.bmi = weight / (height * height);
     }
   }
+
+  protected generateMacros() {
+    this.foodservice.getMacros(this.currentUser?.id).subscribe(macros => {
+      this.macroData=macros;
+      this.healthForm.patchValue({
+        proteins: macros.proteins,
+        carbohydrates: macros.carbs,
+        fats: macros.fats
+      });
+
+    });
+  }
+
+
 }

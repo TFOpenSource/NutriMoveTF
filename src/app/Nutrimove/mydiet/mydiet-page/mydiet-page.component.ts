@@ -18,6 +18,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatSortHeader} from "@angular/material/sort";
 import {RouterOutlet} from "@angular/router";
+import {AuthenApiService} from '../../Access/services/authen-api.service';
 
 @Component({
   selector: 'app-mydiet-page',
@@ -55,9 +56,20 @@ export class MydietPageComponent{
   @Output() protected cancelRequested = new EventEmitter<void>();
   @ViewChild('mydietForm', { static: false }) protected mydietForm!: NgForm;
 
-  constructor() {
+  currentUser: any = null;
+
+
+  constructor(private authenService: AuthenApiService) {
+    this.authenService.getCurrentUser().subscribe((user) => {
+      this.currentUser = user;
+    });
+
     this.mydiet = new Food({});
+    this.mydiet.user_id = this.currentUser.id;
+
+
   }
+
 
   private resetEditState() {
     this.mydiet = new Food({});
@@ -75,6 +87,14 @@ export class MydietPageComponent{
 
   protected onSubmit() {
     if (this.isValid()) {
+
+      if (this.currentUser) {
+        this.mydiet.user_id = this.currentUser.id;
+      } else {
+        console.error('Usuario no disponible al momento de enviar la actividad');
+        return;
+      }
+
       let emitter = this.isEditMode() ? this.mydietUpdateRequested : this.mydietAddRequested;
       emitter.emit(this.mydiet);
       this.resetEditState();

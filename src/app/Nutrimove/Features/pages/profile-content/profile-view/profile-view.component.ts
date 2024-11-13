@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenApiService } from "../../../../Access/services/authen-api.service";
-import { User } from '../../../../../shared/model/User/user.entity';
 import { Router } from '@angular/router';
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from "@angular/material/card";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
@@ -12,6 +11,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {ProfileEditComponent} from '../profile-edit/profile-edit.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ import {TranslateModule} from '@ngx-translate/core';
     templateUrl: './profile-view.component.html',
     standalone: true,
   imports: [
+    MatDialogModule,
     MatCardTitle,
     MatCard,
     MatCardContent,
@@ -37,19 +39,28 @@ import {TranslateModule} from '@ngx-translate/core';
     styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit {
-  currentUser: any;
-
-  constructor(private authenService: AuthenApiService, private router: Router) {}
+  currentUser: any = null;
+  subscription: any = null;
+  constructor(private authenService: AuthenApiService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.authenService.getCurrentUser().subscribe((user) => {
       this.currentUser = user;
-      console.log(this.currentUser);
+
     });
+
+    this.authenService.getSubscription(this.currentUser.id).subscribe((subscription) => {
+        this.subscription = subscription;
+
+    })
+
   };
 
-  onEdit() {
-    this.router.navigate(['/profile/edit']);
+  onEdit(): void {
+    this.dialog.open(ProfileEditComponent, {
+      width: '400px'
+    });
   }
+
 
 }

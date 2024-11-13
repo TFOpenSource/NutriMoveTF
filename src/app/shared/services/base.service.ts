@@ -28,6 +28,7 @@ export class BaseService<T> {
     return this.http.get<T>(`${this.apiUrl}/${endpoint}/${id}`);
   }
   create(endpoint: string, item: T): Observable<T> {
+    console.log(`${this.apiUrl}/${endpoint}`);
     return this.http.post<T>(`${this.apiUrl}/${endpoint}`, item);
   }
   update(endpoint: string, id: number, item: T): Observable<T> {
