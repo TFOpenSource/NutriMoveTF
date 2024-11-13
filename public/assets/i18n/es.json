@@ -5,6 +5,28 @@
   "water_consumed": "ml de agua consumidos",
   "calories_consumed": "calorías consumidas",
   "sleep_hours": "horas de sueño",
+  "hydration": {
+    "last_24h": "Hidratación en las últimas 24h",
+    "ml_consumed": "ml consumidos",
+    "ml_placeholder": "Ingrese ml consumidos",
+    "ml_error": "Este campo es obligatorio y debe ser un número positivo",
+    "update": "Actualizar Hidratación"
+  },
+  "sleep": {
+    "last_24h": "Horas de sueño en las últimas 24h",
+    "input_hours": "Horas",
+    "quality": "Calidad",
+    "quality_plc": "Ej: Buena, Regular, Mala",
+    "sleep_error": "este campo es requerido",
+    "update": "Actualizar Horas de sueño"
+  },
+  "goal": {
+    "info_title": "Información de la meta",
+    "type": "Tipo",
+    "start_date": "Inicio de la meta",
+    "end_date": "Fin de la meta",
+    "none": "Ninguna"
+  },
   "diet": {
     "id": "ID",
     "name": "Nombre",
@@ -56,6 +78,20 @@
       "carbohydrates_placeholder": "Carbohidratos",
       "fats": "Grasas",
       "fats_placeholder": "Grasas"
+    },
+    "medical_history": {
+      "title": "Historial Médico",
+      "date": "Fecha",
+      "condition": "Condición",
+      "description": "Descripción",
+      "no_records": "No se encontraron registros médicos.",
+      "edit_title": "Editar Registro Médico",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "add": "Añadir",
+      "add_new": "Añadir",
+      "save": "Guardar",
+      "cancel": "Cancelar"
     }
   },
   "profile": {

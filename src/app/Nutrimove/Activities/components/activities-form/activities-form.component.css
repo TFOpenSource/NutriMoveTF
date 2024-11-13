@@ -58,3 +58,37 @@ p {
   font-size: 16px;
   margin: 5px 0;
 }
+
+.field {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.field:focus-within {
+  box-shadow: 0px 8px 8px rgb(48, 140, 131);
+  border-color: #308C83;
+}
+
+.field input:focus {
+  border-color: #308C83;
+  outline: none;
+}
+
+.field mat-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #308C83;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.field input:hover {
+  border-color: #308C83;
+}
+
