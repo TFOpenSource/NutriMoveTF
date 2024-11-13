@@ -5,7 +5,7 @@
 
     <div class="spinner-container">
       <div class="spinner-item">
-        <p>Hidratación las últimas 24h</p>
+        <p>{{ 'hydration.last_24h' | translate }} </p>
         <mat-progress-spinner
           mode="determinate"
           [value]="progress_hyd"
@@ -19,37 +19,26 @@
         </div>
 
         <div class="input-container">
-          <mat-form-field appearance="outline" class="input-field">
-            <mat-label>ml consumidos</mat-label>
-            <input
-              matInput
-              type="number"
-              [(ngModel)]="updatingHdr"
-              name="ml"
-              placeholder="ml consumidos"
-              required
-              #ml="ngModel"
-              min="0"
-            />
-            <mat-error *ngIf="ml.invalid && ml.touched">
-              Este campo es obligatorio y debe ser un número positivo
-            </mat-error>
-          </mat-form-field>
-
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="openModal()"
-            [disabled]="ml.invalid"
-          >
-            Actualizar Hidratacion
-          </button>
+          <form [formGroup]="hydrationForm">
+            <div class="inputs">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'hydration.ml_consumed' | translate }}</mat-label>
+                <input matInput type="number" formControlName="ml" required min="0"/>
+                <mat-error *ngIf="hydrationForm.controls['ml'].invalid">
+                  {{ 'hydration.ml_error' | translate }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" (click)="openModal()" [disabled]="hydrationForm.invalid">
+              {{ 'hydration.update' | translate }}
+            </button>
+          </form>
         </div>
       </div>
 
 
       <div class="spinner-item">
-        <p>Horas de Sueño las últimas 24h</p>
+        <p>{{ 'sleep.last_24h' | translate }} </p>
         <mat-progress-spinner
           mode="determinate"
           [value]="progress_sleep"
@@ -63,56 +52,55 @@
         </div>
 
         <div class="input-container">
-          <mat-form-field appearance="outline" class="input-field">
-            <mat-label>Horas Dormidas</mat-label>
-            <input
-              matInput
-              type="number"
-              [(ngModel)]="updatingHours"
-              name="hours"
-              placeholder="Horas Dormidas"
-              required
-              #hours="ngModel"
-              min="0"
-            />
-            <mat-error *ngIf="hours.invalid && hours.touched">
-              Este campo es obligatorio y debe ser un número positivo
-            </mat-error>
-          </mat-form-field>
+          <form [formGroup]="sleepForm">
+            <div class="inputs">
+              <mat-form-field appearance="outline" class="input-field">
+                <mat-label>{{ 'sleep.input_hours' | translate }}</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="hours"
+                  required
+                  min="0"
+                />
+                <mat-error *ngIf="sleepForm.controls['hours'].invalid && sleepForm.controls['hours'].touched">
+                  {{ 'sleep.sleep_error' | translate }}
+                </mat-error>
+              </mat-form-field>
 
-          <mat-form-field appearance="outline" class="input-field">
-            <mat-label>Calidad</mat-label>
-            <input
-              matInput
-              [(ngModel)]="qualitySleep"
-              name="quality"
-              placeholder="Ej. Buena, Regular, Mala"
-              required
-              #quality="ngModel"
-            />
-            <mat-error *ngIf="quality.invalid && quality.touched">
-              Este campo es obligatorio
-            </mat-error>
-          </mat-form-field>
+              <mat-form-field appearance="outline" class="input-field">
+                <mat-label>{{ 'sleep.quality' | translate }}</mat-label>
+                <input
+                  matInput
+                  formControlName="quality"
+                  required
+                  placeholder="{{ 'sleep.quality_plc' | translate }}"
+                />
+                <mat-error *ngIf="sleepForm.controls['quality'].invalid">
+                  {{ 'sleep.sleep_error' | translate }}
+                </mat-error>
+              </mat-form-field>
 
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="openModal()"
-            [disabled]="hours.invalid || quality.invalid"
-          >
-            Actualizar Horas de Sueño
-          </button>
+            </div>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openModalSleep()"
+              [disabled]="sleepForm.invalid"
+            >
+              {{ 'sleep.update' | translate }}
+            </button>
+          </form>
         </div>
 
       </div>
     </div>
     <div class="goal-container">
       <div class="goal-item" (click)="openEditGoalModal()">
-        <strong>Información de la meta:</strong>
-        <p>Tipo: {{ goal?.goal_type || "None"}}</p>
-        <p>Inicio de la meta: {{ goal?.start_date || "None" }}</p>
-        <p>Fin de la meta: {{ goal?.end_date || "None"}}</p>
+        <strong>{{ 'goal.info_title' | translate }}</strong>
+        <p>{{ 'goal.type' | translate }}: {{ goal?.goal_type || ('goal.none' | translate) }}</p>
+        <p>{{ 'goal.start_date' | translate }}: {{ goal?.start_date || ('goal.none' | translate) }}</p>
+        <p>{{ 'goal.end_date' | translate }}: {{ goal?.end_date || ('goal.none' | translate) }}</p>
       </div>
     </div>
   </div>
