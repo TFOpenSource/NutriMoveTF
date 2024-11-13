@@ -9,7 +9,6 @@ import { filter } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginDialogComponent} from '../../../Nutrimove/Access/components/login-dialog/login-dialog.component';
 import {RegisterDialogComponent} from '../../../Nutrimove/Access/components/register-dialog/register-dialog.component';
-import {User} from '../../../shared/model/User/user.entity';
 
 @Component({
   selector: 'app-toolbar',

@@ -17,6 +17,7 @@ import {ActivitiesFormComponent} from '../activities-form/activities-form.compon
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {RecommendationsComponent} from '../recommendations/recommendations.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {AuthenApiService} from '../../../Access/services/authen-api.service';
 
 @Component({
   selector: 'app-activities-page',
@@ -61,17 +62,23 @@ export class ActivitiesPageComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: false }) protected paginator!: MatPaginator;
   @ViewChild(MatSort) protected sort!: MatSort;
+  currentUser: any = null;
 
   private activitiesService: ActivitiesService = inject(ActivitiesService);
 
-  constructor() {
+  constructor(private authenService: AuthenApiService) {
     this.editMode = false;
     this.activitiesData = new Activities({});
     this.dataSource = new MatTableDataSource<Activities>();
+
+    this.authenService.getCurrentUser().subscribe((user) => {
+      this.currentUser = user;
+    });
+
   }
 
   ngOnInit(): void {
-    this.getAllActivities();
+    this.getAllActivities(this.currentUser.id);
 
   }
 
@@ -86,7 +93,7 @@ export class ActivitiesPageComponent implements OnInit, AfterViewInit {
 
   protected onCancelRequested() {
     this.resetEditState();
-    this.getAllActivities();
+    this.getAllActivities(this.currentUser.id);
   }
 
   private resetEditState(): void {
@@ -111,10 +118,10 @@ export class ActivitiesPageComponent implements OnInit, AfterViewInit {
     this.resetEditState();
   }
 
-  private getAllActivities() {
+  private getAllActivities(userId: number) {
     this.activitiesService.getAll(this.activitiesService.endpoint).subscribe((response: Array<Activities>) => {
-      this.dataSource.data = response;
-      console.log(response);
+      this.dataSource.data = response.filter(activity => activity.user_id === userId);
+
     });
   }
 

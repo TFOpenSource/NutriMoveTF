@@ -1,14 +1,28 @@
-export interface User {
+export class User {
   id: number;
   name: string;
   lastname: string;
   email: string;
   password: string;
-  privacy: boolean;
-  goal: string;
-  goal_type: string;
-  start_date: string;
-  finish_date: string;
   created_at: string;
-  plan_id: number;
+  privacy: string;
+
+  constructor(
+    id: number,
+    name: string,
+    lastname: string,
+    email: string,
+    password: string,
+    created_at: string,
+    privacy: string
+  ) {
+    this.id = id;
+    this.name = name;
+    this.lastname = lastname;
+    this.email = email;
+    this.password = password;
+    this.created_at = created_at;
+    this.privacy = "private";
+  }
 }
+

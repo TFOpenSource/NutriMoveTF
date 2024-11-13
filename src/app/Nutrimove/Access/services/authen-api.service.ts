@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../shared/services/base.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, forkJoin, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../../shared/model/User/user.entity';
 
@@ -22,8 +22,17 @@ export class AuthenApiService {
     return this.getAllUsers().pipe(
       map((users: User[]) => {
         const user = users.find(u => u.email === email && u.password === password);
-        if (user){
-          this.currentUserSubject.next(user);
+        if (user) {
+          this.currentUserSubject.next(new User(
+            user.id,
+            user.name,
+            user.lastname,
+            user.email,
+            user.password,
+            user.created_at,
+            user.privacy
+          ));
+
           localStorage.setItem('authUser', JSON.stringify(user));
         }
         return user ? user : null;
@@ -31,15 +40,26 @@ export class AuthenApiService {
     );
   }
 
+
+  getSubscription(userId: number): Observable<any>{
+
+    return this.baseService.getAll('subscription').pipe(
+      map(sub => {
+        return sub.find(sub => sub.id === userId);
+      })
+    )
+  }
   getCurrentUser(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }
-
   register(user: User): Observable<User> {
-
-    return this.baseService.create('user', user); // Usa 'users' como el endpoint
-
+    return this.baseService.create('user', user);  // Creamos solo al usuario
   }
+
+  registerSubscription(data: any): Observable<any> {
+    return this.baseService.create('subscription', data);  // Creamos solo la suscripción
+  }
+
 
   getAllUsers(): Observable<User[]> {
     return this.baseService.getAll('user');
