@@ -19,6 +19,7 @@ export class AuthenApiService {
   }
 
   login(email: string, password: string): Observable<User | null> {
+    this.getAllUsers();
     return this.getAllUsers().pipe(
       map((users: User[]) => {
         const user = users.find(u => u.email === email && u.password === password);
@@ -73,7 +74,7 @@ export class AuthenApiService {
 
   registerSubscription(data: any): Observable<any> {
     console.log(data);
-    return this.baseService.create('subscriptions', data);  // Creamos solo la suscripción
+    return this.baseService.create('subscriptions', data);
   }
 
   createGoal(data: any):Observable<any>{
@@ -83,14 +84,15 @@ export class AuthenApiService {
 
 
   getAllUsers(): Observable<User[]> {
-    return this.baseService.getAll('user');
+    return this.baseService.getAll('users');
+
   }
 
   getUserById(id: number): Observable<User> {
-    return this.baseService.getById('user', id);
+    return this.baseService.getById('users', id);
   }
 
   updateUser(user: User): Observable<User> {
-    return this.baseService.update('user', user.id, user);
+    return this.baseService.update('users', user.id, user);
   }
 }
