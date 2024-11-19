@@ -18,10 +18,10 @@ export class DashboardService {
     );
   }
 
-  getAllSleep(userId: number | undefined): Observable<any[]> {
+  getAllSleep(_userId: number | undefined): Observable<any[]> {
     return this.baseService.getAll('sleep').pipe(
       map(sleep => {
-        const a = sleep.filter(sleep => sleep.user_id === userId);
+        const a = sleep.filter(sleep => sleep.userId === _userId);
         return a;
       })
     );
@@ -40,33 +40,47 @@ export class DashboardService {
   }
 
   getLatestSleepLast24Hours(userId: number | undefined): Observable<any> {
+    console.log('Obteniendo datos de sueño para el userId:', userId); // Verificar el userId al inicio
+
     return this.getAllSleep(userId).pipe(
       map(sleep => {
+        console.log('Datos obtenidos de sueño:', sleep); // Ver los datos de sueño obtenidos
+
         if (!sleep || sleep.length === 0) {
+          console.log('No se encontraron datos de sueño o está vacío');
           return null;
         }
 
         const now = new Date();
         const last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        console.log('Fecha actual:', now);
+        console.log('Fecha límite para las últimas 24 horas:', last24Hours);
 
         const recentSleep = sleep.filter((sleep: { date: string | number | Date; }) =>
           new Date(sleep.date) >= last24Hours
         );
 
+        console.log('Datos de sueño recientes en las últimas 24 horas:', recentSleep); // Ver los datos filtrados
+
         if (recentSleep.length === 0) {
+          console.log('No se encontraron datos de sueño en las últimas 24 horas');
           return null;
         }
 
-
         const totalHoursSlept = recentSleep.reduce((total, current) => {
-          return total + (current.hours_slept || 0);
+          const hours = current.hoursSlept || 0;
+          console.log('Horas de sueño de este registro:', hours); // Verificar las horas de sueño de cada registro
+          return total + hours;
         }, 0);
+
+        console.log('Total de horas de sueño en las últimas 24 horas:', totalHoursSlept); // Ver el total calculado
 
         return totalHoursSlept;
 
       })
     );
   }
+
 
   getLatestHydrationLast24Hours(userId: number | undefined): Observable<any> {
     return this.getAllHydration(userId).pipe(
@@ -96,13 +110,12 @@ export class DashboardService {
     );
   }
 
-  updateHours(userId: number | undefined, hours: number, quality: string): Observable<any> {
+  updateHours(user_id: number | undefined, hours: number, quality: string): Observable<any> {
 
     const response = {
-      id: 0,
-      user_id: userId,
+      userId: user_id,
       date: new Date().toISOString(),
-      hours_slept: hours,
+      hoursSlept: hours,
       quality: quality
     }
 

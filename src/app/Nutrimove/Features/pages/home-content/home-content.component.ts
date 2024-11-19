@@ -151,12 +151,21 @@ export class HomeContentComponent implements OnInit {
 
 
   private getLatestSleepForLast24Hours(): void {
+    console.log('Ejecutando getLatestSleepForLast24Hours'); // Para verificar que el método se está ejecutando
+
     if (this.user_id) {
+      console.log('user_id:', this.user_id); // Verificar el valor de user_id
+
       this.dashboardService.getLatestSleepLast24Hours(this.user_id).subscribe(
         totalHoursSlept => {
+          console.log('Datos obtenidos de sueño:', totalHoursSlept); // Ver los datos obtenidos desde el servicio
+
           if (totalHoursSlept !== null && totalHoursSlept !== undefined) {
             this.latestSleepData = totalHoursSlept;
+            console.log('Últimos datos de sueño:', this.latestSleepData); // Verificar el valor después de asignar
+
             this.progress_sleep = (this.latestSleepData * 100) / this.GOAL_SLEEP;
+            console.log('Progreso de sueño:', this.progress_sleep); // Verificar el cálculo del progreso
           } else {
             console.warn("No se obtuvieron datos recientes de sueño en las últimas 24 horas.");
             this.progress_sleep = 0;
@@ -171,6 +180,7 @@ export class HomeContentComponent implements OnInit {
       console.warn('user_id es nulo o indefinido');
     }
   }
+
 
 
   private getLatestHydrationForLast24Hours(): void {
