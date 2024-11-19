@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../shared/services/base.service';
-import {BehaviorSubject, forkJoin, Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../../shared/model/User/user.entity';
 
