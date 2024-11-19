@@ -11,7 +11,7 @@ export class AuthenApiService {
 
   private currentUserSubject = new BehaviorSubject<User | null>(null);
 
-  constructor(private baseService: BaseService<User>) {
+  constructor(private baseService: BaseService<any>) {
     const storedUser = localStorage.getItem('authUser');
     if (storedUser) {
       this.currentUserSubject.next(JSON.parse(storedUser));
@@ -52,16 +52,33 @@ export class AuthenApiService {
   getCurrentUser(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }
-  register(user: User): Observable<User> {
-    return this.baseService.create('user', user);  // Creamos solo al usuario
+  register(user: any): Observable<any> {
+
+    interface UserData {
+      name: string;
+      lastname: string;
+      email: string;
+      password: string;
+      privacy: string;
+    }
+
+    const { name, lastname, email, password, privacy } = user;
+
+
+    const transformData: UserData = { name, lastname, email, password, privacy };
+
+
+    return this.baseService.create('users', transformData);
   }
 
   registerSubscription(data: any): Observable<any> {
-    return this.baseService.create('subscription', data);  // Creamos solo la suscripción
+    console.log(data);
+    return this.baseService.create('subscriptions', data);  // Creamos solo la suscripción
   }
 
   createGoal(data: any):Observable<any>{
-    return this.baseService.create("goal", data);
+    console.log(data);
+    return this.baseService.create("goals", data);
   }
 
 

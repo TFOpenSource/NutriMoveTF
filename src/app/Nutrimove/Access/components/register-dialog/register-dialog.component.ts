@@ -62,39 +62,47 @@ export class RegisterDialogComponent implements OnInit{
       }
 
       const newUser = {
-        id:0,
         name,
         lastname,
         email,
         password,
-        created_at: new Date().toISOString(),
-        privacy: "private"
+        privacy: "PRIVATE"
       };
 
       this.authenService.register(newUser as User).subscribe(
         (userResponse) => {
           console.log('User Created:', userResponse);
 
-
+          //creacion de goal
           const createData = {
-            id:0,
-            user_id: userResponse.id,
             goal_type: "-",
             start_date: "-",
-            end_date: "-"
+            end_date: "-",
+            userId: userResponse.id
           }
 
+
+
+          //suscripciones
           this.data = {
-            id:0,
             description: plan,
             price: price,
-            month_duration: duration,
-            updated_at: new Date().toISOString(),
+            monthDuration: duration,
             trial: setTrial,
-            user_id: userResponse.id,
+            userId: userResponse.id,
           };
 
+          /*
+          this.authenService.createGoal(createData).subscribe(
+            (response) => {
+              console.log('Goal Created:', response);
+            },
+            error => {
+              console.error('Error creating Goal:', error);
+            }
+          );*/
 
+          //registro suscripcion
           this.authenService.registerSubscription(this.data).subscribe(
             (subscriptionResponse) => {
               console.log('Subscription Created:', subscriptionResponse);
@@ -105,15 +113,6 @@ export class RegisterDialogComponent implements OnInit{
             (error) => {
               console.error('Error al crear la suscripción', error);
               this.errorMessage = 'Error al crear la suscripción';
-            }
-          );
-
-          this.authenService.createGoal(createData).subscribe(
-            (response) => {
-              console.log('Goal Created:', response);
-            },
-            error => {
-              console.error('Error creating Goal:', error);
             }
           );
         },
