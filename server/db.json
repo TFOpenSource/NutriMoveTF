@@ -76,6 +76,13 @@
       "date": "2024-11-13T15:48:47.498Z",
       "hours_slept": 8,
       "quality": "good"
+    },
+    {
+      "id": 8,
+      "user_id": 1,
+      "date": "2024-11-15T06:54:45.625Z",
+      "hours_slept": 4,
+      "quality": "HASTA LAS HUEVAS"
     }
   ],
   "hydration": [
@@ -102,6 +109,12 @@
       "user_id": 1,
       "date": "2024-11-12T05:35:53.635Z",
       "quantity_ml": 100
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "date": "2024-11-15T06:53:26.146Z",
+      "quantity_ml": 2000
     }
   ],
   "activities": [
@@ -113,7 +126,15 @@
       "user_id": 1
     }
   ],
-  "medical_history": [],
+  "medical_history": [
+    {
+      "id": 1,
+      "date": "2024-11-06",
+      "condition": "TUMAMACALATA",
+      "description": "GAAAAAAAAAAAAAAAAAA",
+      "user_id": 1
+    }
+  ],
   "food": [
     {
       "id": 1,
@@ -122,6 +143,15 @@
       "proteins": 0,
       "carbs": 25,
       "fats": 0,
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "name": "FANODRIC",
+      "calories": 20,
+      "proteins": 13,
+      "carbs": 26,
+      "fats": 27,
       "user_id": 1
     }
   ],
