@@ -9,14 +9,12 @@ import {Observable} from 'rxjs';
 
 export class BaseService<T> {
 
-  private apiUrl = 'http://localhost:3000';
-
-  protected basePath: string = `${environment.serverBasePath}`;
+  protected apiUrl: string = `${environment.serverBasePath}`;
 
   protected resourceEndPoint: string = '/resources';
 
   protected resourcePath(): string {
-    return `${this.basePath}${this.resourceEndPoint}`;
+    return `${this.apiUrl}${this.resourceEndPoint}`;
   }
 
   constructor(protected http: HttpClient) {}
@@ -28,7 +26,7 @@ export class BaseService<T> {
     return this.http.get<T>(`${this.apiUrl}/${endpoint}/${id}`);
   }
   create(endpoint: string, item: T): Observable<T> {
-    console.log(`${this.apiUrl}/${endpoint}`);
+
     return this.http.post<T>(`${this.apiUrl}/${endpoint}`, item);
   }
   update(endpoint: string, id: number, item: T): Observable<T> {
