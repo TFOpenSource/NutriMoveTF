@@ -8,7 +8,7 @@ import {BaseService} from '../../../../../shared/services/base.service';
   providedIn: 'root'
 })
 export class ProfileApiService {
-  private endpoint: string = 'user';  // Cambia la URL según la estructura de tu API
+  private endpoint: string = 'users';  // Cambia la URL según la estructura de tu API
 
   constructor(private baseService: BaseService<any>) { }
 

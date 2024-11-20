@@ -10,16 +10,16 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FoodService extends BaseService<Food> {
-  public endpoint = 'food';
+  public endpoint = 'foods';
 
   constructor(protected override http: HttpClient) {
     super(http);
-    this.resourceEndPoint = '/food';
+    this.resourceEndPoint = '/foods';
   }
 
   getMacros(userId: number | undefined): Observable<any> {
-    return this.getAll("food").pipe(
-      map(items => items.filter((item: Food) => item.user_id === userId)),
+    return this.getAll("foods").pipe(
+      map(items => items.filter((item: Food) => item.userId === userId)),
       map(filteredItems => {
 
         const macros = {
