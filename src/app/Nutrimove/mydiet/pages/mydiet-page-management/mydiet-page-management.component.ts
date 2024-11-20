@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, OnInit, ViewChild, viewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
 import {Food} from "../../model/food.entity";
 import {
   MatCell, MatCellDef,

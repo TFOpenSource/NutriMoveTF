@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { BaseService } from '../../../shared/services/base.service';
 import { Food } from '../model/food.entity';
 import {Observable} from 'rxjs';
-import {Recommendation} from '../../Activities/models/recommendations.entity';
 import {map} from 'rxjs/operators';
 
 @Injectable({

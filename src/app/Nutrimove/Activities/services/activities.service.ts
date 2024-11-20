@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from '../../../shared/services/base.service';
 import {HttpClient} from '@angular/common/http';
-import {Activities} from '../models/activities.entity';
 import {Recommendation} from '../models/recommendations.entity';
 import {Observable} from 'rxjs';
 

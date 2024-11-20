@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../../../../../shared/model/User/user.entity';
 import {BaseService} from '../../../../../shared/services/base.service';
 
 @Injectable({
