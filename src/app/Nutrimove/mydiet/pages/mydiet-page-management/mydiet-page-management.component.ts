@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, OnInit, ViewChild, viewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
 import {Food} from "../../model/food.entity";
 import {
   MatCell, MatCellDef,
@@ -111,9 +111,11 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
     this.dailyStats.fats = totalFats;
   }
 
+
+  /*
   protected onDeleteItem(item: Food) {
     this.deleteMydiet(item.id);
-  }
+  }*/
 
   protected onCancelRequested() {
     this.resetEditState();
@@ -132,7 +134,7 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
 
   protected onMydietsUpdateRequested(item: Food) {
     this.mydietData = item;
-    this.updateMydiets();
+    //this.updateMydiets();
     this.resetEditState();
   }
 
@@ -144,18 +146,23 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
 
   private getAllMydiets(userId: number) {
     this.foodService.getAll(this.foodService.endpoint).subscribe((response: Array<Food>) => {
-      this.dataSource.data = response.filter(food => food.user_id === userId);
+      this.dataSource.data = response.filter(food => food.userId === userId);
       this.calculateDailyStats();
 
     });
   }
 
+
+
+  /*
   private deleteMydiet(id: number) {
     this.foodService.delete(this.foodService.endpoint, id).subscribe(() => {
       this.dataSource.data = this.dataSource.data.filter((mydiet: Food) => mydiet.id !== id);
       this.calculateDailyStats();
     });
   }
+  */
+
 
   private createMydiets() {
 
@@ -163,6 +170,9 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
     this.mydietData.proteins = Number(this.mydietData.proteins);
     this.mydietData.carbs = Number(this.mydietData.carbs);
     this.mydietData.fats = Number(this.mydietData.fats);
+    this.mydietData.userId = Number(this.currentUser.id);
+
+    console.log(this.mydietData);
 
     this.foodService.create(this.foodService.endpoint, this.mydietData).subscribe((response: Food) => {
       this.dataSource.data.push(response);
@@ -171,12 +181,16 @@ export class MydietManagementComponent implements OnInit, AfterViewInit {
     });
   }
 
+
+  /*
   private updateMydiets() {
-    this.foodService.update(this.foodService.endpoint, this.mydietData.id, this.mydietData).subscribe((response: Food) => {
+    this.foodService.update(this.foodService.endpoint, this.mydietData?.id, this.mydietData).subscribe((response: Food) => {
       const index = this.dataSource.data.findIndex((mydiet: Food) => mydiet.id === response.id);
       this.dataSource.data[index] = response;
       this.dataSource.data = [...this.dataSource.data];
       this.calculateDailyStats();
     });
   }
+  */
+
 }

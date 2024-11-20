@@ -39,8 +39,7 @@
         <mat-label>Subscription: </mat-label>
         <p>{{subscription?.description || "None"}}  </p>
         <p>Price: ${{subscription?.price || 0 }}</p>
-        <p>Months Left: {{subscription?.month_duration || "None"}}</p>
-        <p>Updated At: {{subscription?.updated_at || ""}}</p>
+        <p>Months Left: {{subscription?.monthDuration || "None"}}</p>
         <p *ngIf="subscription?.trial || false">Trial Plan</p>
         <p *ngIf="!subscription?.trial || false">Full Plan</p>
       </div>

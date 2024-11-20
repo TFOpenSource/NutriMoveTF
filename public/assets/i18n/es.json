@@ -16,7 +16,7 @@
     "last_24h": "Horas de sueño en las últimas 24h",
     "input_hours": "Horas",
     "quality": "Calidad",
-    "quality_plc": "Ej: Buena, Regular, Mala",
+    "quality_plc": "Ej: Buena, Mala",
     "sleep_error": "este campo es requerido",
     "update": "Actualizar Horas de sueño"
   },

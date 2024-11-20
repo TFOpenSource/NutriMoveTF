@@ -119,8 +119,9 @@ export class ActivitiesPageComponent implements OnInit, AfterViewInit {
   }
 
   private getAllActivities(userId: number) {
-    this.activitiesService.getAll(this.activitiesService.endpoint).subscribe((response: Array<Activities>) => {
-      this.dataSource.data = response.filter(activity => activity.user_id === userId);
+
+    this.activitiesService.getAll(this.activitiesService.endpoint).subscribe((response: Array<any>) => {
+      this.dataSource.data = response.filter(activity => activity.userId === userId);
 
     });
   }
@@ -132,7 +133,15 @@ export class ActivitiesPageComponent implements OnInit, AfterViewInit {
   }
 
   private createActivities() {
-    this.activitiesService.create(this.activitiesService.endpoint, this.activitiesData).subscribe((response: Activities) => {
+
+    const newData = {
+      name: this.activitiesData.name,
+      description: this.activitiesData.description,
+      duration: this.activitiesData.duration,
+      userId: this.currentUser.id
+    }
+
+    this.activitiesService.create(this.activitiesService.endpoint, newData).subscribe((response: Activities) => {
       this.dataSource.data.push(response);
       this.dataSource.data = [...this.dataSource.data];
     });

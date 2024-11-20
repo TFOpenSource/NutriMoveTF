@@ -63,7 +63,7 @@
                   required
                   min="0"
                 />
-                <mat-error *ngIf="sleepForm.controls['hours'].invalid && sleepForm.controls['hours'].touched">
+                <mat-error *ngIf="sleepForm.controls['hours'].invalid">
                   {{ 'sleep.sleep_error' | translate }}
                 </mat-error>
               </mat-form-field>
@@ -101,6 +101,40 @@
         <p>{{ 'goal.type' | translate }}: {{ goal?.goal_type || ('goal.none' | translate) }}</p>
         <p>{{ 'goal.start_date' | translate }}: {{ goal?.start_date || ('goal.none' | translate) }}</p>
         <p>{{ 'goal.end_date' | translate }}: {{ goal?.end_date || ('goal.none' | translate) }}</p>
+      </div>
+    </div>
+
+    <div class="achievement-container">
+      <h2>Achievements</h2>
+      <button (click)="addingNewAchievement = true" style="margin-bottom: 10px;">Add</button>
+      <div *ngIf="achievement && achievement.length; else noHistory" class="grid-container">
+
+        <div *ngFor="let data of achievement" class="medical-record">
+          <p><strong>Achievement:</strong> {{ data.achievement }}</p>
+          <p><strong>Date:</strong> {{ data.date }}</p>
+          <button (click)="deleteAchievement(data.id)">Delete</button>
+        </div>
+      </div>
+
+      <ng-template #noHistory>
+        <p>No Achievement</p>
+
+      </ng-template>
+
+      <div *ngIf="addingNewAchievement" class="new-record-form">
+        <h3>{{ 'health.medical_history.add_new' | translate }}</h3>
+        <form [formGroup]="newAchievementForm" (ngSubmit)="addNewAchievement()">
+          <label>Date:</label>
+          <input formControlName="date" type="date" required>
+
+          <label>Description</label>
+          <input formControlName="achievement" type="text" required>
+
+          <button type="submit">Submit</button>
+          <button type="button"
+                  (click)="addingNewAchievement = false">{{ 'health.medical_history.cancel' | translate }}
+          </button>
+        </form>
       </div>
     </div>
   </div>
