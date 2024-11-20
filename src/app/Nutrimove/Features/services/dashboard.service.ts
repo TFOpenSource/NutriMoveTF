@@ -13,7 +13,7 @@ export class DashboardService {
   getAllHydration(userId: number | undefined): Observable<any[]> {
     return this.baseService.getAll('hydration').pipe(
       map(hydrations => {
-        return hydrations.filter(hydration => hydration.user_id === userId);
+        return hydrations.filter(hydration => hydration.userId === userId);
       })
     );
   }
@@ -28,52 +28,45 @@ export class DashboardService {
   }
 
   getGoal(userId: number | undefined):Observable<any> {
-    return this.baseService.getAll('goal').pipe(
+    return this.baseService.getAll('goals').pipe(
       map(goal => {
-        return goal.find(goal => goal.user_id === userId);
+        return goal.find(goal => goal.userId === userId);
       })
     )
   }
 
   updateGoal(id: number, goalData: any) {
-    return this.baseService.update('goal', id, goalData);
+    return this.baseService.update('goals', id, goalData);
   }
 
   getLatestSleepLast24Hours(userId: number | undefined): Observable<any> {
-    console.log('Obteniendo datos de sueño para el userId:', userId); // Verificar el userId al inicio
-
     return this.getAllSleep(userId).pipe(
       map(sleep => {
-        console.log('Datos obtenidos de sueño:', sleep); // Ver los datos de sueño obtenidos
+
 
         if (!sleep || sleep.length === 0) {
-          console.log('No se encontraron datos de sueño o está vacío');
+
           return null;
         }
 
         const now = new Date();
         const last24Hours = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-        console.log('Fecha actual:', now);
-        console.log('Fecha límite para las últimas 24 horas:', last24Hours);
 
         const recentSleep = sleep.filter((sleep: { date: string | number | Date; }) =>
           new Date(sleep.date) >= last24Hours
         );
 
-        console.log('Datos de sueño recientes en las últimas 24 horas:', recentSleep); // Ver los datos filtrados
 
         if (recentSleep.length === 0) {
-          console.log('No se encontraron datos de sueño en las últimas 24 horas');
+
           return null;
         }
 
         const totalHoursSlept = recentSleep.reduce((total, current) => {
           const hours = current.hoursSlept || 0;
-          console.log('Horas de sueño de este registro:', hours); // Verificar las horas de sueño de cada registro
+
           return total + hours;
         }, 0);
-
-        console.log('Total de horas de sueño en las últimas 24 horas:', totalHoursSlept); // Ver el total calculado
 
         return totalHoursSlept;
 
@@ -103,7 +96,7 @@ export class DashboardService {
           return total + (current.quantity_ml || 0);
         }, 0);
 
-        console.log("ml" + totalmlDrink);
+
 
         return totalmlDrink;
       })
@@ -126,11 +119,10 @@ export class DashboardService {
   updateHydration(userId: number | undefined, quantity: number): Observable<any> {
 
     const response = {
-      id: 0,
-      user_id: userId,
-      date: new Date().toISOString(),
-      quantity_ml: quantity
-    }
+      date: new Date().toISOString().split('T')[0],
+      quantity_ml: quantity,
+      userId: userId
+    };
 
 
     return this.baseService.create("hydration", response );
@@ -138,23 +130,24 @@ export class DashboardService {
   }
 
   getMedicalHistory(userId: number | undefined): Observable<any[]> {
-    return this.baseService.getAll('medical_history').pipe(
+    return this.baseService.getAll('medical-history').pipe(
       map((history: any[]) => {
-        return history.filter(record => record.user_id === userId);
+        return history.filter(record => record.userId === userId);
       })
     );
   }
 
   updateMedicalHistory(record: any): Observable<any> {
-    return this.baseService.update('medical_history', record.id, record);
+    return this.baseService.update('medical-history', record.id, record);
   }
 
   deleteMedicalHistory(recordId: number): Observable<any> {
-    return this.baseService.delete('medical_history', recordId);
+
+    return this.baseService.delete('medical-history', recordId);
   }
 
   addMedicalHistory(record: any): Observable<any> {
-    return this.baseService.create('medical_history', record);
+    return this.baseService.create('medical-history', record);
   }
 
 }

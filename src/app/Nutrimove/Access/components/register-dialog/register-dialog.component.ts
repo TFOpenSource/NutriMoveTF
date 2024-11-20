@@ -73,13 +73,24 @@ export class RegisterDialogComponent implements OnInit{
         (userResponse) => {
           console.log('User Created:', userResponse);
 
-          //creacion de goal
+          const formatDate = (date: Date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Mes en formato de dos dígitos
+            const day = String(date.getDate()).padStart(2, '0'); // Día en formato de dos dígitos
+            return `${year}-${month}-${day}`;
+          };
+
+          const today = new Date();
+          const nextWeek = new Date();
+          nextWeek.setDate(today.getDate() + 7); // Fecha una semana después
+
           const createData = {
             goal_type: "-",
-            start_date: "-",
-            end_date: "-",
+            start_date: formatDate(today), // Fecha de hoy
+            end_date: formatDate(nextWeek), // Fecha de una semana después
             userId: userResponse.id
-          }
+          };
+
 
 
 
@@ -92,7 +103,7 @@ export class RegisterDialogComponent implements OnInit{
             userId: userResponse.id,
           };
 
-          /*
+
           this.authenService.createGoal(createData).subscribe(
             (response) => {
               console.log('Goal Created:', response);
@@ -100,7 +111,7 @@ export class RegisterDialogComponent implements OnInit{
             error => {
               console.error('Error creating Goal:', error);
             }
-          );*/
+          );
 
           //registro suscripcion
           this.authenService.registerSubscription(this.data).subscribe(
