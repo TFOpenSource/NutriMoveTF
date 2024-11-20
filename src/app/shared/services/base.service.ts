@@ -35,5 +35,9 @@ export class BaseService<T> {
   delete(endpoint: string, id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${endpoint}/${id}`);
   }
+
+  deleteByFk(endpoint: string, id: number, userId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${endpoint}/${id}/${userId}`);
+  }
 }
 

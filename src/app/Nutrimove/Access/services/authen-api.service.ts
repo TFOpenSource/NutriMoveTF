@@ -44,7 +44,7 @@ export class AuthenApiService {
 
   getSubscription(userId: number): Observable<any>{
 
-    return this.baseService.getAll('subscription').pipe(
+    return this.baseService.getAll('subscriptions').pipe(
       map(sub => {
         return sub.find(sub => sub.id === userId);
       })

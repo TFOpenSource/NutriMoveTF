@@ -9,7 +9,7 @@
     "last_24h": "Sleep Hours in the last 24h",
     "input_hours": "Hours",
     "quality": "Quality",
-    "quality_plc": "Ej: Good, Regular, Bad",
+    "quality_plc": "Ej: Good, Bad",
     "sleep_error": "This field is required",
     "update": "Update Sleep Hours"
   },

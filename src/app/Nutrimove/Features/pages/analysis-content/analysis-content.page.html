@@ -34,19 +34,20 @@
 
   <div class="medical-history-container">
     <h2>{{ 'health.medical_history.title' | translate }}</h2>
+    <button (click)="addingNewRecord = true">{{ 'health.medical_history.add' | translate }}</button>
     <div *ngIf="medicalHistory && medicalHistory.length; else noHistory">
+
       <div *ngFor="let record of medicalHistory" class="medical-record">
         <p><strong>{{ 'health.medical_history.date' | translate }}:</strong> {{ record.date }}</p>
         <p><strong>{{ 'health.medical_history.condition' | translate }}:</strong> {{ record.condition }}</p>
         <p><strong>{{ 'health.medical_history.description' | translate }}:</strong> {{ record.description }}</p>
-        <button (click)="startEdit(record)">{{ 'health.medical_history.edit' | translate }}</button>
         <button (click)="deleteRecord(record.id)">{{ 'health.medical_history.delete' | translate }}</button>
       </div>
     </div>
 
     <ng-template #noHistory>
       <p>{{ 'health.medical_history.no_records' | translate }}</p>
-      <button (click)="addingNewRecord = true">{{ 'health.medical_history.add' | translate }}</button>
+
     </ng-template>
 
     <div *ngIf="addingNewRecord" class="new-record-form">

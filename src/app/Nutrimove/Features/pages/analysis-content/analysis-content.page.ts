@@ -72,9 +72,8 @@ export class AnalysisContentPage implements OnInit {
   addNewRecord() {
     if (this.newRecordForm.valid && this.currentUser) {
       const newRecord = {
-        id: 0,
         ...this.newRecordForm.value,
-        user_id: this.currentUser.id
+        userId: this.currentUser.id
       };
 
       this.dashboard.addMedicalHistory(newRecord).subscribe(
