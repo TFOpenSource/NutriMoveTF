@@ -1,8 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { User } from '../../../../../shared/model/User/user.entity';
-import { ProfileApiService } from "../services/ProfileApi.service";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
