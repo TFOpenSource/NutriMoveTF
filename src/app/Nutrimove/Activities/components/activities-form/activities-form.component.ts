@@ -51,7 +51,7 @@ export class ActivitiesFormComponent {
     });
 
     this.activity = new Activities({});
-    this.activity.user_id = this.currentUser.id;
+    this.activity.userId = this.currentUser.id;
 
   }
 
@@ -74,7 +74,7 @@ export class ActivitiesFormComponent {
     if (this.isValid()) {
 
       if (this.currentUser) {
-        this.activity.user_id = this.currentUser.id;
+        this.activity.userId = this.currentUser.id;
       } else {
         console.error('Usuario no disponible al momento de enviar la actividad');
         return;

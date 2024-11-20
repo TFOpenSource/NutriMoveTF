@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ActivitiesService extends BaseService<Activities> {
+export class ActivitiesService extends BaseService<any> {
   public endpoint = 'activities';
   public endpoint2 = 'recommendations';
 
