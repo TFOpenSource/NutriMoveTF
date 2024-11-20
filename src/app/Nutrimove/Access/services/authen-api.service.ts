@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../shared/services/base.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, tap} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../../shared/model/User/user.entity';
 
@@ -42,6 +42,7 @@ export class AuthenApiService {
   }
 
 
+
   getSubscription(userId: number): Observable<any>{
 
     return this.baseService.getAll('subscriptions').pipe(
@@ -53,6 +54,22 @@ export class AuthenApiService {
   getCurrentUser(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }
+
+  updateUserStorage(userId: number, updatedData: Partial<User>): Observable<User> {
+    return this.baseService.update("users",userId, updatedData).pipe(
+      tap((updatedUser: User) => {
+
+        const currentUser = this.currentUserSubject.value;
+        if (currentUser && currentUser.id === userId) {
+          const newUser = { ...currentUser, ...updatedData };
+          this.currentUserSubject.next(newUser);
+
+          localStorage.setItem('authUser', JSON.stringify(newUser));
+        }
+      })
+    );
+  }
+
   register(user: any): Observable<any> {
 
     interface UserData {
