@@ -63,7 +63,7 @@
                   required
                   min="0"
                 />
-                <mat-error *ngIf="sleepForm.controls['hours'].invalid && sleepForm.controls['hours'].touched">
+                <mat-error *ngIf="sleepForm.controls['hours'].invalid">
                   {{ 'sleep.sleep_error' | translate }}
                 </mat-error>
               </mat-form-field>
