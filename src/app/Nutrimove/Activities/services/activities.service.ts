@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from '../../../shared/services/base.service';
 import {HttpClient} from '@angular/common/http';
-import {Activities} from '../models/activities.entity';
 import {Recommendation} from '../models/recommendations.entity';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivitiesService extends BaseService<Activities> {
+export class ActivitiesService extends BaseService<any> {
   public endpoint = 'activities';
   public endpoint2 = 'recommendations';
 

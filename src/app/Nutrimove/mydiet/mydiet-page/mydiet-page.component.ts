@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Food} from "../model/food.entity";
 import {FormsModule, NgForm} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -65,7 +65,7 @@ export class MydietPageComponent{
     });
 
     this.mydiet = new Food({});
-    this.mydiet.user_id = this.currentUser.id;
+    this.mydiet.userId = this.currentUser.id;
 
 
   }
@@ -89,7 +89,7 @@ export class MydietPageComponent{
     if (this.isValid()) {
 
       if (this.currentUser) {
-        this.mydiet.user_id = this.currentUser.id;
+        this.mydiet.userId = this.currentUser.id;
       } else {
         console.error('Usuario no disponible al momento de enviar la actividad');
         return;

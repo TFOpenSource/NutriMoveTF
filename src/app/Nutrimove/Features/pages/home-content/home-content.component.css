@@ -18,16 +18,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
   min-width: 150px;
   padding: 10px;
-  border-radius: 8px;
   position: relative;
 
   background-color: #f2f2f2;
   border: 2px solid #308C83;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   width: 100%;
   max-width: 500px;
@@ -106,7 +104,7 @@ button {
   background-color: #f2f2f2;
   border: 2px solid #308C83;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   width: 100%;
   max-width: 500px;
@@ -125,3 +123,95 @@ button {
 }
 
 
+
+.achievement-container {
+  margin-top: 30px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+  gap: 20px; /* Espaciado entre las cards */
+  padding: 20px; /* Opcional: espaciado interno */
+}
+
+.medical-record {
+  background-color: #e8f5e9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.medical-record p {
+  margin: 5px 0;
+}
+
+.medical-record button {
+  background-color: #308C83;
+  padding: 8px 15px;
+  margin-right: 10px;
+}
+
+.new-record-form {
+  background-color: #f1f8f6;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+
+}
+
+.new-record-form input,
+.new-record-form textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.new-record-form button {
+  background-color: #308C83;
+  padding: 10px 20px;
+}
+
+.new-record-form button[type="button"] {
+  background-color: #a1a1a1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.new-record-form label {
+  font-weight: bold;
+  color: #308C83;
+}
+
+.achievement-container {
+
+  display: grid;
+  place-items: center;
+  text-align: center;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+}
+
+button {
+  background-color: #308C83;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #267b71;
+}

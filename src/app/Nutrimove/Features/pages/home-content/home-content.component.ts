@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../../shared/model/User/user.entity';
-import {NgIf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {AuthenApiService} from '../../../Access/services/authen-api.service';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {DashboardService} from '../../services/dashboard.service';
@@ -18,23 +18,24 @@ import {MatNativeDateModule} from '@angular/material/core';
 @Component({
   selector: 'app-home-content',
   standalone: true,
-  imports: [
-    MatNativeDateModule,
-    EditGoalDialogComponent,
-    MatDialogModule,
-    NgIf,
-    MatProgressSpinner,
-    TranslateModule,
-    MatButton,
-    MatInput,
-    ReactiveFormsModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatCard,
-    MatCardHeader,
-    MatCardContent,
-    MatProgressBar,
-  ],
+    imports: [
+        MatNativeDateModule,
+        EditGoalDialogComponent,
+        MatDialogModule,
+        NgIf,
+        MatProgressSpinner,
+        TranslateModule,
+        MatButton,
+        MatInput,
+        ReactiveFormsModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatCard,
+        MatCardHeader,
+        MatCardContent,
+        MatProgressBar,
+        NgForOf,
+    ],
   templateUrl: './home-content.component.html',
   styleUrl: './home-content.component.css'
 })
@@ -57,6 +58,10 @@ export class HomeContentComponent implements OnInit {
   goal: any = null;
   selectedGoal: any = null;
 
+  achievement: any[] = [];
+  addingNewAchievement: boolean = false;
+  newAchievementForm: FormGroup;
+
   constructor(private authenService: AuthenApiService, private dashboardService: DashboardService, private dialog: MatDialog, public fb:FormBuilder) {
     this.hydrationForm = this.fb.group({
       ml: [null, [Validators.required, Validators.min(0)]]
@@ -66,6 +71,12 @@ export class HomeContentComponent implements OnInit {
       hours: [null, [Validators.required, Validators.min(0)]],
       quality: ['', Validators.required]
     });
+
+    this.newAchievementForm = this.fb.group({
+      date: ['', Validators.required],
+      achievement: ['', Validators.required]
+    });
+
   }
 
   ngOnInit(): void {
@@ -85,6 +96,7 @@ export class HomeContentComponent implements OnInit {
     console.log(this.user_id);
     this.dashboardService.getGoal(this.user_id).subscribe(goalData => {
       this.goal = goalData;
+        console.log("sklsks");
         console.log(this.goal);
     }, error => {
       console.error('error loading goal:', error);
@@ -92,6 +104,40 @@ export class HomeContentComponent implements OnInit {
       }
     );
 
+    this.loadAchievements();
+
+  }
+
+
+  addNewAchievement() {
+    if (this.newAchievementForm.valid && this.currentUser) {
+      const newAchievement = {
+        userId: this.currentUser.id,
+        ...this.newAchievementForm.value
+
+      };
+
+      this.dashboardService.addAchievement(newAchievement).subscribe(
+        (record) => {
+          this.achievement.push(record);
+          this.addingNewAchievement = false;
+          this.newAchievementForm.reset();
+        },
+        (error) => console.error("Error adding record", error)
+      );
+    }
+  }
+
+  private loadAchievements() {
+    this.dashboardService.getAchievement(this.currentUser?.id).subscribe(ach => {
+      this.achievement = ach;
+    });
+  }
+
+  deleteAchievement(recordId: number) {
+    this.dashboardService.deleteAchievement(recordId).subscribe(() => {
+      this.loadAchievements();
+    });
   }
 
   refreshData():void {
@@ -151,11 +197,15 @@ export class HomeContentComponent implements OnInit {
 
 
   private getLatestSleepForLast24Hours(): void {
+
     if (this.user_id) {
+
       this.dashboardService.getLatestSleepLast24Hours(this.user_id).subscribe(
         totalHoursSlept => {
+
           if (totalHoursSlept !== null && totalHoursSlept !== undefined) {
             this.latestSleepData = totalHoursSlept;
+
             this.progress_sleep = (this.latestSleepData * 100) / this.GOAL_SLEEP;
           } else {
             console.warn("No se obtuvieron datos recientes de sueño en las últimas 24 horas.");
@@ -171,6 +221,7 @@ export class HomeContentComponent implements OnInit {
       console.warn('user_id es nulo o indefinido');
     }
   }
+
 
 
   private getLatestHydrationForLast24Hours(): void {

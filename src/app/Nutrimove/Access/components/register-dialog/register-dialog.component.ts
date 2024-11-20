@@ -62,39 +62,58 @@ export class RegisterDialogComponent implements OnInit{
       }
 
       const newUser = {
-        id:0,
         name,
         lastname,
         email,
         password,
-        created_at: new Date().toISOString(),
-        privacy: "private"
+        privacy: "PRIVATE"
       };
 
       this.authenService.register(newUser as User).subscribe(
         (userResponse) => {
           console.log('User Created:', userResponse);
 
+          const formatDate = (date: Date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Mes en formato de dos dígitos
+            const day = String(date.getDate()).padStart(2, '0'); // Día en formato de dos dígitos
+            return `${year}-${month}-${day}`;
+          };
+
+          const today = new Date();
+          const nextWeek = new Date();
+          nextWeek.setDate(today.getDate() + 7); // Fecha una semana después
 
           const createData = {
-            id:0,
-            user_id: userResponse.id,
             goal_type: "-",
-            start_date: "-",
-            end_date: "-"
-          }
-
-          this.data = {
-            id:0,
-            description: plan,
-            price: price,
-            month_duration: duration,
-            updated_at: new Date().toISOString(),
-            trial: setTrial,
-            user_id: userResponse.id,
+            start_date: formatDate(today), // Fecha de hoy
+            end_date: formatDate(nextWeek), // Fecha de una semana después
+            userId: userResponse.id
           };
 
 
+
+
+          //suscripciones
+          this.data = {
+            description: plan,
+            price: price,
+            monthDuration: duration,
+            trial: setTrial,
+            userId: userResponse.id,
+          };
+
+
+          this.authenService.createGoal(createData).subscribe(
+            (response) => {
+              console.log('Goal Created:', response);
+            },
+            error => {
+              console.error('Error creating Goal:', error);
+            }
+          );
+
+          //registro suscripcion
           this.authenService.registerSubscription(this.data).subscribe(
             (subscriptionResponse) => {
               console.log('Subscription Created:', subscriptionResponse);
@@ -105,15 +124,6 @@ export class RegisterDialogComponent implements OnInit{
             (error) => {
               console.error('Error al crear la suscripción', error);
               this.errorMessage = 'Error al crear la suscripción';
-            }
-          );
-
-          this.authenService.createGoal(createData).subscribe(
-            (response) => {
-              console.log('Goal Created:', response);
-            },
-            error => {
-              console.error('Error creating Goal:', error);
             }
           );
         },

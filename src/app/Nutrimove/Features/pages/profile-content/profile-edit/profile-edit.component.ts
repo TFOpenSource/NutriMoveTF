@@ -1,8 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { User } from '../../../../../shared/model/User/user.entity';
-import { ProfileApiService } from "../services/ProfileApi.service";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -33,7 +30,6 @@ export class ProfileEditComponent implements OnInit {
 
   constructor(
       private fb: FormBuilder,
-      private profileService: ProfileApiService,
       private authenService: AuthenApiService,
       public dialogRef: MatDialogRef<ProfileEditComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any
@@ -48,8 +44,13 @@ export class ProfileEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authenService.getCurrentUser().subscribe((user) => {
-      this.currentUser = user;
+    this.authenService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.currentUser = user;
+      },
+      error: (err) => {
+        console.error('Failed to load user', err);
+      },
     });
   }
 
@@ -67,10 +68,10 @@ export class ProfileEditComponent implements OnInit {
         privacy: this.profileForm.value.privacy
       };
 
-      this.profileService.updateUser(this.currentUser.id, formattedData).subscribe({
+      this.authenService.updateUserStorage(this.currentUser.id, formattedData).subscribe({
         next: (response) => {
           console.log('Update successful', response);
-          this.dialogRef.close();
+          this.dialogRef.close(formattedData);
         },
         error: (error) => {
           console.error('Update failed', error);
