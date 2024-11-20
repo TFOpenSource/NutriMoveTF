@@ -25,7 +25,6 @@ export class AnalysisContentPage implements OnInit {
   editingRecord: any = null;
   editForm: FormGroup;
 
-
   ngOnInit(): void {
     this.authenService.getCurrentUser().subscribe(
       (user) => {

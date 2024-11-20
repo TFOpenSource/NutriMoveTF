@@ -150,4 +150,23 @@ export class DashboardService {
     return this.baseService.create('medical-history', record);
   }
 
+
+
+  addAchievement(record: any): Observable<any>{
+    return this.baseService.create('achievements', record);
+  }
+
+  getAchievement(userId: number | undefined): Observable<any[]> {
+    return this.baseService.getAll('achievements').pipe(
+      map((ach: any[]) => {
+        return ach.filter(record => record.userId === userId);
+      })
+    );
+  }
+
+  deleteAchievement(recordId: number): Observable<any> {
+
+    return this.baseService.delete('achievements', recordId);
+  }
+
 }
